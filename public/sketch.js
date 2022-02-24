@@ -15,6 +15,8 @@ let rescaling_height;
 logging.info("FXHASH: " + fxhash);
 
 
+let counter = 0;
+
 
 function preload() {
   font = loadFont('SourceSansPro-Regular.otf');
@@ -29,10 +31,23 @@ function setup() {
 
 
 function draw() {
+  ambientLight(0, 0, 255);
+
 
   background(200);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  box(50);
+
+  if (frameCount % 3 == 0) {
+    counter += 1;
+  }
+
+  push();
+  translate(-300, -300, 0);
+  box(200, 100, counter);
+  pop();
+
+  push();
+  translate(-50, -300, 0);
+  box(200, 100, 350);
+  pop();
 }
 
