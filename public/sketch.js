@@ -40,14 +40,63 @@ function draw() {
     counter += 1;
   }
 
-  push();
-  translate(-300, -300, 0);
-  box(200, 100, counter);
-  pop();
+  camera(mouseX, mouseY, 1080, 0, 0, 0, 0, 1, 0);
 
   push();
-  translate(-50, -300, 0);
-  box(200, 100, 350);
+  translate(-200, -200, 0);
+
+  // side up
+  beginShape();
+  vertex(0, 0, 0);
+  vertex(200, 0, 0);
+  vertex(200, 0, 300);
+  vertex(0, 0, 300);
+  endShape();
+
+  // side left
+  beginShape();
+  vertex(0, 100, 300);
+  vertex(0, 100, 0);
+  vertex(0, 0, 0);
+  vertex(0, 0, 300);
+  endShape();
+
+  // side down
+  beginShape();
+  vertex(200, 100, 0);
+  vertex(200, 100, 300);
+  vertex(0, 100, 300);
+  vertex(0, 100, 0);
+  endShape()
+
+  // side right
+  beginShape();
+  vertex(200, 100, 0);
+  vertex(200, 100, 300);
+  vertex(200, 0, 300);
+  vertex(200, 0, 0);
+  endShape()
+
+  // side top
+  // beginShape();
+  // vertex(0, 0, 300);
+  // vertex(200, 0, 300);
+  // vertex(200, 100, 300);
+  // vertex(0, 100, 300);
+  // endShape()
+
+  // side top
+  beginShape();
+  vertex(0, 0, 0);
+  vertex(200, 0, 0);
+  vertex(200, 100, 0);
+  vertex(0, 100, 0);
+  endShape()
+
   pop();
+
+  // push();
+  // translate(-50, -300, 0);
+  // pop();
 }
 
