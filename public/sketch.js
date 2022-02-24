@@ -27,12 +27,12 @@ function setup() {
 
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
 
+  box = new Box(200, 100, 300, 0, 0, 0, top = true);
 }
 
 
 function draw() {
   ambientLight(0, 0, 255);
-
 
   background(200);
 
@@ -42,61 +42,7 @@ function draw() {
 
   camera(mouseX, mouseY, 1080, 0, 0, 0, 0, 1, 0);
 
-  push();
-  translate(-200, -200, 0);
+  box.show();
 
-  // side up
-  beginShape();
-  vertex(0, 0, 0);
-  vertex(200, 0, 0);
-  vertex(200, 0, 300);
-  vertex(0, 0, 300);
-  endShape();
-
-  // side left
-  beginShape();
-  vertex(0, 100, 300);
-  vertex(0, 100, 0);
-  vertex(0, 0, 0);
-  vertex(0, 0, 300);
-  endShape();
-
-  // side down
-  beginShape();
-  vertex(200, 100, 0);
-  vertex(200, 100, 300);
-  vertex(0, 100, 300);
-  vertex(0, 100, 0);
-  endShape()
-
-  // side right
-  beginShape();
-  vertex(200, 100, 0);
-  vertex(200, 100, 300);
-  vertex(200, 0, 300);
-  vertex(200, 0, 0);
-  endShape()
-
-  // side top
-  // beginShape();
-  // vertex(0, 0, 300);
-  // vertex(200, 0, 300);
-  // vertex(200, 100, 300);
-  // vertex(0, 100, 300);
-  // endShape()
-
-  // side top
-  beginShape();
-  vertex(0, 0, 0);
-  vertex(200, 0, 0);
-  vertex(200, 100, 0);
-  vertex(0, 100, 0);
-  endShape()
-
-  pop();
-
-  // push();
-  // translate(-50, -300, 0);
-  // pop();
 }
 
