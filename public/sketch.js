@@ -32,7 +32,7 @@ function setup() {
 
 
 function draw() {
-  ambientLight(0, 0, 255);
+  ambientLight(255, 255, 255);
 
   background(200);
 

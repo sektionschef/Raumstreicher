@@ -10,6 +10,20 @@ class Box {
 
         this.bottom = bottom;
         this.top = top;
+
+        this.texture_side_up = createGraphics(this.width, this.depth);
+        this.texture_side_up.background(color("#0057b7"));
+        this.texture_side_down = createGraphics(this.width, this.depth);
+        this.texture_side_down.background(color("#0057b7"));
+        this.texture_side_left = createGraphics(this.height, this.depth);
+        this.texture_side_left.background(color("#0057b7"));
+        this.texture_side_right = createGraphics(this.height, this.depth);
+        this.texture_side_right.background(color("#0057b7"));
+
+        this.texture_top = createGraphics(this.width, this.height);
+        this.texture_top.background(color("#ffd700"));
+        this.texture_bottom = createGraphics(this.width, this.height);
+        this.texture_bottom.background(0);
     }
 
     show() {
@@ -18,6 +32,7 @@ class Box {
 
         // side up
         beginShape();
+        texture(this.texture_side_up);
         vertex(0, 0, 0);
         vertex(this.width, 0, 0);
         vertex(this.width, 0, this.depth);
@@ -26,6 +41,7 @@ class Box {
 
         // side left
         beginShape();
+        texture(this.texture_side_left);
         vertex(0, this.height, this.depth);
         vertex(0, this.height, 0);
         vertex(0, 0, 0);
@@ -34,6 +50,7 @@ class Box {
 
         // side down
         beginShape();
+        texture(this.texture_side_down);
         vertex(this.width, this.height, 0);
         vertex(this.width, this.height, this.depth);
         vertex(0, this.height, this.depth);
@@ -42,6 +59,7 @@ class Box {
 
         // side right
         beginShape();
+        texture(this.texture_side_right);
         vertex(this.width, this.height, 0);
         vertex(this.width, this.height, this.depth);
         vertex(this.width, 0, this.depth);
@@ -50,21 +68,23 @@ class Box {
 
         // side top
         if (this.top == true) {
+            texture(this.texture_top);
             beginShape();
-            vertex(0, 0, this.depth);
-            vertex(this.width, 0, this.depth);
-            vertex(this.width, this.height, this.depth);
-            vertex(0, this.height, this.depth);
-            endShape()
+            vertex(0, 0, this.depth, 0, 0);
+            vertex(this.width, 0, this.depth, 1, 0);
+            vertex(this.width, this.height, this.depth, 1, 1);
+            vertex(0, this.height, this.depth, 0, 1);
+            endShape();
         }
 
         // side bottom
         if (this.bottom == true) {
+            texture(this.texture_bottom);
             beginShape();
-            vertex(0, 0, 0);
-            vertex(this.width, 0, 0);
-            vertex(this.width, this.height, 0);
-            vertex(0, this.height, 0);
+            vertex(0, 0, 0, 0, 0);
+            vertex(this.width, 0, 0, 1, 0);
+            vertex(this.width, this.height, 0, 1, 1);
+            vertex(0, this.height, 0, 0, 1);
             endShape()
         }
 
