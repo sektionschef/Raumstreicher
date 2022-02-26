@@ -269,4 +269,48 @@ class Grid {
     //         box_real.lines = new Lines(box_real.a.x, box_real.a.y, box_real.b.x, box_real.c.y, PADDING_X, PADDING_Y, DISTANCE_BETWEEN_LINES);
     //     }
     // }
+
+
+    // check_boxes_complete() {
+
+    //     this.boxes_completely_run = true;
+
+    //     for (let box_real of this.real_boxes) {
+    //         box_real.lines.check_all_complete();
+    //         if (box_real.lines.all_lines_complete == false) {
+    //             this.boxes_completely_run = false;
+    //         }
+    //     }
+    // }
+
+    show() {
+        let center_x;
+        let center_y;
+
+
+        push();
+        textFont(font);
+        textSize(20 * SCALING_FACTOR);
+        rectMode(CORNERS);
+        for (let box_real of this.real_boxes) {
+            // console.log(box_real.label);
+            // fill(133);
+            // fill(255);
+            noFill();
+            if (logging.getLevel() <= 1) {
+                strokeWeight(3);
+                stroke(51);
+            } else {
+                noStroke();
+            }
+            if (logging.getLevel() <= 1) {
+                rect(box_real.a.x * SCALING_FACTOR, box_real.a.y * SCALING_FACTOR, box_real.c.x * SCALING_FACTOR, box_real.c.y * SCALING_FACTOR);
+                fill(0)
+                center_x = (box_real.b.x - box_real.a.x) / 2 * SCALING_FACTOR
+                center_y = (box_real.d.y - box_real.a.y) / 2 * SCALING_FACTOR
+                text(box_real.label, (box_real.a.x + center_x) * SCALING_FACTOR, (box_real.a.y + center_y) * SCALING_FACTOR);
+            }
+        }
+        pop();
+    }
 }

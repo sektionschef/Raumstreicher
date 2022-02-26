@@ -10,6 +10,8 @@ let SCALING_FACTOR = 1;
 let rescaling_width;
 let rescaling_height;
 
+let grid;
+
 COUNT_OF_POINTS_X = Math.floor(getRandomFromInterval(1, 5));  // 1-5
 COUNT_OF_POINTS_Y = Math.floor(getRandomFromInterval(1, 5));  // 1-5
 GRID = COUNT_OF_POINTS_X + "x" + COUNT_OF_POINTS_Y;
@@ -35,18 +37,22 @@ function setup() {
 
   box = new Box(200, 100, 300, 0, 0, 0, top = true);
 
-  let grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT);
+  grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT);
 }
 
 
 function draw() {
+  translate(-width / 2, -height / 2, 0);
+
   ambientLight(255, 255, 255);
 
   background(200);
 
-  camera(mouseX, mouseY, 1080, 0, 0, 0, 0, 1, 0);
+  // camera(mouseX, mouseY, 1080, 0, 0, 0, 0, 1, 0);
 
   box.show();
+
+  grid.show();
 
 }
 
