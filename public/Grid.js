@@ -266,9 +266,12 @@ class Grid {
 
     create_boxes() {
         let height;
+        let open;
+
         for (let box_real of this.real_boxes) {
-            height = getRandomFromInterval(-200, 200)
-            box_real.body = new Box((box_real.c.x - box_real.a.x), (box_real.c.y - box_real.a.y), height, box_real.a.x, box_real.a.y, 0, true, true);
+            height = getRandomFromInterval(0, 400)
+            open = getRandomFromList([true, false])
+            box_real.body = new Box((box_real.c.x - box_real.a.x), (box_real.c.y - box_real.a.y), height, box_real.a.x, box_real.a.y, 0, open, !open);
         }
     }
 

@@ -23,7 +23,7 @@ class Box {
         this.texture_top = createGraphics(this.width, this.height);
         this.texture_top.background(color("#ffd700"));
         this.texture_bottom = createGraphics(this.width, this.height);
-        this.texture_bottom.background(0);
+        this.texture_bottom.background(color("#ffd700"));
     }
 
     show() {
