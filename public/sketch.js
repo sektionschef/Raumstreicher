@@ -12,14 +12,13 @@ let rescaling_height;
 
 let grid;
 
-COUNT_OF_POINTS_X = Math.floor(getRandomFromInterval(1, 5));  // 1-5
-COUNT_OF_POINTS_Y = Math.floor(getRandomFromInterval(1, 5));  // 1-5
+COUNT_OF_POINTS_X = Math.floor(getRandomFromInterval(5, 15));  // 1-5
+COUNT_OF_POINTS_Y = Math.floor(getRandomFromInterval(5, 15));  // 1-5
 GRID = COUNT_OF_POINTS_X + "x" + COUNT_OF_POINTS_Y;
 
 MINIMIMUM_DISTANCE = CANVAS_WIDTH / 20
 
-PAIRING_COUNT = Math.floor(getRandomFromInterval(1, 4));
-
+PAIRING_COUNT = Math.floor(getRandomFromInterval(4, 10));
 DISTANCE_BETWEEN_LINES = 10;
 
 logging.info("FXHASH: " + fxhash);
@@ -35,7 +34,7 @@ function setup() {
 
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
 
-  box = new Box(200, 100, 300, 500, 300, 0, top = true);
+  // box = new Box(200, 100, 300, 500, 300, 0, top = true);
 
   grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT);
 
@@ -50,11 +49,13 @@ function draw() {
 
   background(200);
 
-  // camera(mouseX, mouseY, 1080, 0, 0, 0, 0, 1, 0);
+  camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
 
 
-  grid.show();
-  box.show();
+  // grid.show_grid_debug();
+
+  grid.show_boxes();
+  // box.show();
 
 }
 

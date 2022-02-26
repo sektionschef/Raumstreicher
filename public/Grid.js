@@ -42,7 +42,7 @@ class Grid {
         logging.debug("The real boxes are:");
         logging.debug(this.real_boxes);
 
-        // this.create_lines();
+        this.create_boxes();
     }
 
 
@@ -264,11 +264,19 @@ class Grid {
         }
     }
 
-    // create_lines() {
-    //     for (let box_real of this.real_boxes) {
-    //         box_real.lines = new Lines(box_real.a.x, box_real.a.y, box_real.b.x, box_real.c.y, PADDING_X, PADDING_Y, DISTANCE_BETWEEN_LINES);
-    //     }
-    // }
+    create_boxes() {
+        let height;
+        for (let box_real of this.real_boxes) {
+            height = getRandomFromInterval(-200, 200)
+            box_real.body = new Box((box_real.c.x - box_real.a.x), (box_real.c.y - box_real.a.y), height, box_real.a.x, box_real.a.y, 0, true, true);
+        }
+    }
+
+    show_boxes() {
+        for (let box_real of this.real_boxes) {
+            box_real.body.show();
+        }
+    }
 
 
     // check_boxes_complete() {
@@ -283,7 +291,7 @@ class Grid {
     //     }
     // }
 
-    show() {
+    show_grid_debug() {
         let center_x;
         let center_y;
 
