@@ -35,9 +35,11 @@ function setup() {
 
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
 
-  box = new Box(200, 100, 300, 0, 0, 0, top = true);
+  box = new Box(200, 100, 300, 500, 300, 0, top = true);
 
   grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT);
+
+  resize_canvas();
 }
 
 
@@ -50,9 +52,9 @@ function draw() {
 
   // camera(mouseX, mouseY, 1080, 0, 0, 0, 0, 1, 0);
 
-  box.show();
 
   grid.show();
+  box.show();
 
 }
 
