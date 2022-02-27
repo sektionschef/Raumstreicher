@@ -32,11 +32,8 @@ STROKE_NOISE = 3;
 STROKE_NOISE_2 = 3;
 STROKE_SIZE = 1;
 
-let kitten;
-
 function preload() {
   font = loadFont('SourceSansPro-Regular.otf');
-  kitten = loadImage("kitten.jpg");
 }
 
 function setup() {
@@ -58,7 +55,6 @@ function draw() {
   ambientLight(255, 255, 255);
 
   background(100);
-  image(kitten);
 
   camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
 

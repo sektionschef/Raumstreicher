@@ -26,10 +26,12 @@ class Box {
         this.texture_top = createGraphics(this.width, this.height);
         // this.texture_top.background(color("#ffd700"));
         // this.texture_top_lines = new Lines(this.texture_top, this.x, this.y, this.x + this.width, this.y + this.height, 0, 0, 15)
-        image(this.texture_top);
 
         this.texture_bottom = createGraphics(this.width, this.height);
         this.texture_bottom.background(color("#ffd700"));
+
+        image(this.texture_top);
+        image(this.texture_side_up);
     }
 
     show() {
@@ -81,13 +83,10 @@ class Box {
             this.texture_top.background("red");
             this.texture_top.fill(color("green"));
             this.texture_top.circle(10, 10, 15);
-            this.texture_top.noStroke();
-            this.texture_top.ellipse(this.texture_top.width / 2, this.texture_top.height / 2, 50, 50);
             texture(this.texture_top);
-            // texture(kitten);
             beginShape();
             vertex(0, 0, this.depth, 0, 0);
-            vertex(this.width, 0, this.depth, 0, 1);
+            vertex(this.width, 0, this.depth, 1, 0);
             vertex(this.width, this.height, this.depth, 1, 1);
             vertex(0, this.height, this.depth, 0, 1);
             endShape();
