@@ -12,7 +12,8 @@ class Box {
         this.top = top;
 
         this.texture_side_up = createGraphics(this.width, this.depth);
-        this.texture_side_up.background(color("#0057b7"));
+        // this.texture_side_up.background(color("#0057b7"));
+        this.side_up_lines = new Lines(this.texture_side_up, this.x, this.y, this.x + this.width, this.y + this.height, 0, 0, 5)
         this.texture_side_down = createGraphics(this.width, this.depth);
         this.texture_side_down.background(color("#0057b7"));
         this.texture_side_left = createGraphics(this.height, this.depth);
@@ -27,6 +28,9 @@ class Box {
     }
 
     show() {
+
+        this.side_up_lines.show();
+
         push();
         translate(this.x, this.y, 0);
 
