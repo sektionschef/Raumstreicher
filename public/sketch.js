@@ -15,7 +15,7 @@ let grid;
 COUNT_OF_POINTS_X = Math.floor(getRandomFromInterval(5, 15));  // 1-5
 COUNT_OF_POINTS_Y = Math.floor(getRandomFromInterval(5, 15));  // 1-5
 GRID = COUNT_OF_POINTS_X + "x" + COUNT_OF_POINTS_Y;
-MAX_HEIGHT = 40;
+MAX_HEIGHT = 400;
 
 MINIMIMUM_DISTANCE = CANVAS_WIDTH / 20
 STROKE_DISTORT = getRandomFromInterval(0.1, 0.4);
