@@ -1,9 +1,10 @@
 class Grid {
-    constructor(count_of_points_x, count_of_points_y, minimum_distance, pairing_count) {
+    constructor(count_of_points_x, count_of_points_y, minimum_distance, pairing_count, max_height) {
         this.count_of_points_x = count_of_points_x;
         this.count_of_points_y = count_of_points_y;
         this.minimum_distance = minimum_distance;
         this.pairing_count = pairing_count;
+        this.max_height = max_height;
 
         this.width_points = [0];
         this.height_points = [0];
@@ -267,11 +268,13 @@ class Grid {
     create_boxes() {
         let height;
         let open;
+        let z;
 
         for (let box_real of this.real_boxes) {
-            height = getRandomFromInterval(0, 400)
-            open = getRandomFromList([true, false])
-            box_real.body = new Box((box_real.c.x - box_real.a.x), (box_real.c.y - box_real.a.y), height, box_real.a.x, box_real.a.y, 0, open, !open);
+            height = getRandomFromInterval(0, this.max_height);
+            z = height - getRandomFromInterval(0, height);
+            open = getRandomFromList([true, false]);
+            box_real.body = new Box((box_real.c.x - box_real.a.x), (box_real.c.y - box_real.a.y), height, box_real.a.x, box_real.a.y, z, open, !open);
         }
     }
 
@@ -319,7 +322,8 @@ class Grid {
                 fill(0)
                 center_x = (box_real.b.x - box_real.a.x) / 2 * SCALING_FACTOR
                 center_y = (box_real.d.y - box_real.a.y) / 2 * SCALING_FACTOR
-                text(box_real.label, (box_real.a.x + center_x) * SCALING_FACTOR, (box_real.a.y + center_y) * SCALING_FACTOR);
+                // text is ressource hungry
+                // text(box_real.label, (box_real.a.x + center_x) * SCALING_FACTOR, (box_real.a.y + center_y) * SCALING_FACTOR);
             }
         }
         pop();
