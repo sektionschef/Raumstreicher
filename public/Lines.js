@@ -14,9 +14,10 @@ class Line {
 
         this.run_complete = false;
         // this.stroke_size_dynamic = STROKE_SIZE;
-        this.stroke_size_dynamic = 3;
+        this.stroke_size_dynamic = 5;
         // this.stroke_speed = STROKE_SPEED
-        this.stroke_speed = getRandomFromInterval(1, 1.5);
+        // this.stroke_speed = getRandomFromInterval(1, 1.5);
+        this.stroke_speed = 1;
     }
 
     show() {
