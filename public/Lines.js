@@ -94,8 +94,8 @@ class Line {
             this.canvas.fill(this.line_color);
             this.canvas.circle(this.x * SCALING_FACTOR, this.y * SCALING_FACTOR, this.stroke_size_dynamic);
             // this.canvas.fill(0);
-            this.canvas.fill(this.line_color_second);
-            this.canvas.circle(this.x * SCALING_FACTOR, this.y * SCALING_FACTOR, 1);
+            // this.canvas.fill(this.line_color_second);
+            // this.canvas.circle(this.x * SCALING_FACTOR, this.y * SCALING_FACTOR, 1);
             this.canvas.pop()
         }
     }
@@ -196,10 +196,11 @@ class Lines {
         }
     }
 
-    draw() {
-        for (var line of this.bodies) {
+    draw_lines() {
+        for (let line of this.bodies) {
             line.draw();
         }
+        this.check_all_complete();
     }
 
     check_all_complete() {
@@ -211,7 +212,7 @@ class Lines {
                     this.all_lines_complete = false;
                 }
             }
-            console.log("finished");
+            // console.log("finished");
         }
     }
 }
