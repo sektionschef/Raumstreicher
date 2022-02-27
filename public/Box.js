@@ -51,35 +51,47 @@ class Box {
         // image(this.texture_top);
         // image(this.texture_bottom);
 
+        image(kitten);
     }
 
-    show_lines() {
+    draw_lines() {
+        this.side_up_lines.draw();
+        this.side_down_lines.draw();
+        this.side_left_lines.draw();
+        this.side_right_lines.draw();
 
-        this.side_up_lines.show();
-        this.side_down_lines.show();
-        this.side_left_lines.show();
-        this.side_right_lines.show();
+        this.top_lines.draw();
+        this.bottom_lines.draw();
 
-        this.top_lines.show();
-        this.bottom_lines.show();
+        this.side_up_lines.check_all_complete();
+        this.side_down_lines.check_all_complete();
+        this.side_left_lines.check_all_complete();
+        this.side_right_lines.check_all_complete();
+
+        this.top_lines.check_all_complete();
+        this.bottom_lines.check_all_complete();
     }
 
     show() {
+
         // if (logging.getLevel() > 1) {
-        this.show_lines();
+        this.draw_lines();
         // }
+
 
         push();
         translate(this.x, this.y, 0);
 
-        // side up
-        beginShape();
-        texture(this.texture_side_up);
-        vertex(0, 0, 0);
-        vertex(this.width, 0, 0);
-        vertex(this.width, 0, this.depth);
-        vertex(0, 0, this.depth);
-        endShape();
+        if (this.side_up_lines.all_lines_complete == true) {
+            // side up
+            beginShape();
+            texture(this.texture_side_up);
+            vertex(0, 0, 0);
+            vertex(this.width, 0, 0);
+            vertex(this.width, 0, this.depth);
+            vertex(0, 0, this.depth);
+            endShape();
+        }
 
         // side left
         beginShape();
@@ -110,7 +122,11 @@ class Box {
 
         // side top
         if (this.top == true) {
-            texture(this.texture_top);
+            if (this.top_lines.all_lines_complete == true) {
+                texture(this.texture_top);
+            } else {
+                texture(kitten);
+            }
             beginShape();
             vertex(0, 0, this.depth, 0, 0);
             vertex(this.width, 0, this.depth, 1, 0);

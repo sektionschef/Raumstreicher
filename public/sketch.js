@@ -32,18 +32,23 @@ STROKE_NOISE = 3;
 STROKE_NOISE_2 = 3;
 STROKE_SIZE = 1;
 
+let kitten;
+
 function preload() {
   font = loadFont('SourceSansPro-Regular.otf');
+  kitten = loadImage("kitten.jpg");
 }
 
 function setup() {
   logging.setLevel(SWITCH_LOGGING_LEVEL);
 
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
-
-  // box = new Box(200, 100, 300, 500, 300, 0, top = true);
-
   grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT);
+
+
+  dummy = createGraphics(500, 500);
+  lines = new Lines(dummy, 0, 0, 500, 500, 0, 0, 5);
+  dummy.background(255);
 
   resize_canvas();
 }
@@ -56,13 +61,24 @@ function draw() {
 
   background(100);
 
-  camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
+  // camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
 
 
   // grid.show_grid_debug();
 
-  grid.show_boxes();
-  // box.show();
+  // grid.show_boxes();
+
+  lines.draw();
+  // image(dummy, 0, 0);
+  texture(dummy);
+  // box(500);
+
+  beginShape();
+  vertex(0, 0, 0, 0, 0);
+  vertex(500, 0, 0, 1, 0);
+  vertex(500, 500, 0, 1, 1);
+  vertex(0, 500, 0, 0, 1);
+  endShape();
 
 }
 

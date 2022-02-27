@@ -20,7 +20,7 @@ class Line {
         this.stroke_speed = 1;
     }
 
-    show() {
+    draw() {
 
         if (this.run_complete == false) {
 
@@ -196,9 +196,9 @@ class Lines {
         }
     }
 
-    show() {
+    draw() {
         for (var line of this.bodies) {
-            line.show();
+            line.draw();
         }
     }
 
@@ -211,6 +211,7 @@ class Lines {
                     this.all_lines_complete = false;
                 }
             }
+            console.log("finished");
         }
     }
 }
