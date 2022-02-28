@@ -102,14 +102,12 @@ class Line {
 }
 
 class Lines {
-    constructor(canvas, x_start, y_start, x_stop, y_stop, padding_x, padding_y, distance_between_lines) {
+    constructor(canvas, distance_between_lines) {
         this.canvas = canvas;
-        this.x_start = x_start;
-        this.y_start = y_start;
-        this.x_stop = x_stop;
-        this.y_stop = y_stop;
-        this.padding_x = padding_x;
-        this.padding_y = padding_y;
+        this.x_start = 0;
+        this.y_start = 0;
+        this.x_stop = this.canvas.width;
+        this.y_stop = this.canvas.height;
         this.distance_between_lines = distance_between_lines;
 
         this.bodies = [];
@@ -119,76 +117,76 @@ class Lines {
         logging.debug(chosen_axis + " axis randomly chosen.");
 
         if (chosen_axis == "x") {
-            this.count_lines = ((this.y_stop - this.y_start) - 2 * this.padding_y) / this.distance_between_lines;
+            this.count_lines = (this.y_stop - this.y_start) / this.distance_between_lines;
 
             for (let i = 0; i < this.count_lines; i++) {
                 this.bodies.push(new Line(
                     this.canvas,
                     chosen_axis,
-                    (this.x_start + this.padding_x),
-                    (this.y_start + this.padding_y + this.distance_between_lines * i),
-                    (this.x_stop - this.padding_x),
-                    this.y_stop - this.padding_y));
+                    (this.x_start),
+                    (this.y_start + this.distance_between_lines * i),
+                    (this.x_stop),
+                    this.y_stop));
             }
         } else if (chosen_axis == "y") {
-            this.count_lines = ((this.x_stop - this.x_start) - 2 * this.padding_x) / this.distance_between_lines;
+            this.count_lines = (this.x_stop - this.x_start) / this.distance_between_lines;
 
             for (let i = 0; i < this.count_lines; i++) {
                 this.bodies.push(new Line(
                     this.canvas,
                     chosen_axis,
-                    (this.x_start + this.padding_x + this.distance_between_lines * i),
-                    (this.y_start + this.padding_y),
-                    this.x_stop - this.padding_x,
-                    (this.y_stop - this.padding_x)));
+                    (this.x_start + this.distance_between_lines * i),
+                    this.y_start,
+                    this.x_stop,
+                    this.y_stop));
             }
         } else if (chosen_axis == "xy") {
-            this.count_lines = ((this.x_stop - this.x_start) - 2 * this.padding_x) / this.distance_between_lines;
+            this.count_lines = (this.x_stop - this.x_start) / this.distance_between_lines;
 
             for (let i = 0; i < this.count_lines; i++) {
                 this.bodies.push(new Line(
                     this.canvas,
                     chosen_axis,
-                    (this.x_start + this.padding_x + this.distance_between_lines * i),
-                    (this.y_start + this.padding_y),
-                    this.x_stop - this.padding_x,
-                    (this.y_stop - this.padding_y)));
+                    (this.x_start + this.distance_between_lines * i),
+                    this.y_start,
+                    this.x_stop,
+                    this.y_stop));
             }
-            this.count_lines = ((this.y_stop - this.y_start) - 2 * this.padding_y) / this.distance_between_lines;
+            this.count_lines = (this.y_stop - this.y_start) / this.distance_between_lines;
             // skip first one
             for (let i = 1; i < this.count_lines; i++) {
                 this.bodies.push(new Line(
                     this.canvas,
                     chosen_axis,
-                    (this.x_start + this.padding_x),
-                    (this.y_start + this.padding_y + this.distance_between_lines * i),
-                    this.x_stop - this.padding_x,
-                    (this.y_stop - this.padding_y)));
+                    (this.x_start),
+                    (this.y_start + this.distance_between_lines * i),
+                    this.x_stop,
+                    this.y_stop));
             }
         } else if (chosen_axis == "yx") {
-            this.count_lines = ((this.x_stop - this.x_start) - 2 * this.padding_x) / this.distance_between_lines;
+            this.count_lines = (this.x_stop - this.x_start) / this.distance_between_lines;
 
             for (let i = 0; i < this.count_lines; i++) {
                 this.bodies.push(new Line(
                     this.canvas,
                     chosen_axis,
-                    this.x_start + this.padding_x + this.distance_between_lines * i,
-                    (this.y_stop - this.padding_y),
-                    (this.x_stop - this.padding_x),
-                    (this.y_start + this.padding_y)
+                    this.x_start + this.distance_between_lines * i,
+                    (this.y_stop),
+                    this.x_stop,
+                    (this.y_start)
                 )
                 );
             }
-            this.count_lines = ((this.y_stop - this.y_start) - 2 * this.padding_y) / this.distance_between_lines;
+            this.count_lines = (this.y_stop - this.y_start) / this.distance_between_lines;
 
             for (let i = 1; i < this.count_lines; i++) {
                 this.bodies.push(new Line(
                     this.canvas,
                     chosen_axis,
-                    this.x_start + this.padding_x,
-                    (this.y_stop - this.padding_y - this.distance_between_lines * i),
-                    (this.x_stop - this.padding_x),
-                    (this.y_start + this.padding_y)
+                    this.x_start,
+                    (this.y_stop - this.distance_between_lines * i),
+                    this.x_stop,
+                    this.y_start
                 )
                 );
             }

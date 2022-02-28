@@ -46,10 +46,11 @@ function setup() {
   grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT);
 
 
-  dummy = createGraphics(500, 500);
-  dummy.background(255);
+  // DUMMY
+  // dummy = createGraphics(500, 500);
+  // dummy.background(255);
   // dummy.background("red");
-  lines = new Lines(dummy, 0, 0, 500, 500, 0, 0, 15);
+  // lines = new Lines(dummy, 15);
 
   resize_canvas();
 }

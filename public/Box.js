@@ -20,23 +20,31 @@ class Box {
         this.texture_top = createGraphics(this.width, this.height);
         this.texture_bottom = createGraphics(this.width, this.height);
 
-        // if (logging.getLevel() <= 1) {
-        this.texture_side_up.background(color("#0057b7"));
-        this.texture_side_down.background(color("#0057b7"));
-        this.texture_side_left.background(color("#0057b7"));
-        this.texture_side_right.background(color("#0057b7"));
-        this.texture_top.background(color("#ffd700"));
-        this.texture_bottom.background(color("#ffd700"));
-        // } else {
-        this.side_up_lines = new Lines(this.texture_side_up, 0, 0, this.width, this.height, 0, 0, distance_between_lines)
-        this.side_down_lines = new Lines(this.texture_side_down, 0, 0, this.width, this.height, 0, 0, distance_between_lines)
-        this.side_left_lines = new Lines(this.texture_side_left, 0, 0, this.width, this.height, 0, 0, distance_between_lines)
-        this.side_right_lines = new Lines(this.texture_side_right, 0, 0, this.width, this.height, 0, 0, distance_between_lines)
+        if (logging.getLevel() <= 1) {
+            this.texture_side_up.background(color("#0057b7"));
+            this.texture_side_down.background(color("#0057b7"));
+            this.texture_side_left.background(color("#0057b7"));
+            this.texture_side_right.background(color("#0057b7"));
+            this.texture_top.background(color("#ffd700"));
+            this.texture_bottom.background(color("#ffd700"));
+        } else {
+            this.side_up_lines = new Lines(this.texture_side_up, distance_between_lines)
+            this.side_down_lines = new Lines(this.texture_side_down, distance_between_lines)
+            this.side_left_lines = new Lines(this.texture_side_left, distance_between_lines)
+            this.side_right_lines = new Lines(this.texture_side_right, distance_between_lines)
 
-        // this.top_lines = new Lines(this.texture_top, this.x, this.y, this.x + this.width, this.y + this.height, 0, 0, distance_between_lines)
-        this.top_lines = new Lines(this.texture_top, 0, 0, this.width, this.height, 0, 0, distance_between_lines)
-        this.bottom_lines = new Lines(this.texture_bottom, 0, 0, this.width, this.height, 0, 0, distance_between_lines)
-        // }
+            this.top_lines = new Lines(this.texture_top, distance_between_lines)
+            this.bottom_lines = new Lines(this.texture_bottom, distance_between_lines)
+        }
+
+        // image(this.texture_side_up);
+        // image(this.texture_side_left);
+        // image(this.texture_side_down);
+        // image(this.texture_side_right);
+        // image(this.texture_top);
+        // image(this.texture_bottom);
+
+
     }
 
     draw_lines() {
@@ -59,60 +67,78 @@ class Box {
 
     show() {
 
-        // if (logging.getLevel() > 1) {
-        this.draw_lines();
-        // }
+        if (logging.getLevel() > 1) {
+            this.draw_lines();
+        }
 
         push();
         translate(this.x, this.y, 0);
-
         // if (this.side_up_lines.all_lines_complete == true) {
         // side up
         beginShape();
-        image(this.texture_side_up);
+        // image(this.texture_side_up);
+        textureMode(NORMAL);
         texture(this.texture_side_up);
-        vertex(0, 0, 0);
-        vertex(this.width, 0, 0);
-        vertex(this.width, 0, this.depth);
-        vertex(0, 0, this.depth);
+        vertex(0, 0, 0, 0, 0);
+        vertex(this.width, 0, 0, 1, 0);
+        vertex(this.width, 0, this.depth, 1, 1);
+        vertex(0, 0, this.depth, 0, 1);
         endShape();
         // }
+        pop();
+
 
         // // side left
+        push();
+        translate(this.x, this.y, 0);
         beginShape();
-        image(this.texture_side_left);
+        // image(this.texture_side_left);
         texture(this.texture_side_left);
-        vertex(0, this.height, this.depth);
-        vertex(0, this.height, 0);
-        vertex(0, 0, 0);
-        vertex(0, 0, this.depth);
+        textureMode(NORMAL);
+        vertex(0, this.height, this.depth, 0, 0);
+        vertex(0, this.height, 0, 1, 0);
+        vertex(0, 0, 0, 1, 1);
+        vertex(0, 0, this.depth, 0, 1);
         endShape();
+        pop();
 
         // // side down
+        push();
+        translate(this.x, this.y, 0);
         beginShape();
-        image(this.texture_side_down);
+        // image(this.texture_side_down);
         texture(this.texture_side_down);
-        vertex(this.width, this.height, 0);
-        vertex(this.width, this.height, this.depth);
-        vertex(0, this.height, this.depth);
-        vertex(0, this.height, 0);
+        textureMode(NORMAL);
+        vertex(this.width, this.height, 0, 0, 0);
+        vertex(this.width, this.height, this.depth, 1, 0);
+        vertex(0, this.height, this.depth, 1, 1);
+        vertex(0, this.height, 0, 0, 1);
         endShape()
+        pop();
 
         // // side right
+        push();
+        translate(this.x, this.y, 0);
         beginShape();
-        image(this.texture_side_right);
+        // image(this.texture_side_right);
         texture(this.texture_side_right);
-        vertex(this.width, this.height, 0);
-        vertex(this.width, this.height, this.depth);
-        vertex(this.width, 0, this.depth);
-        vertex(this.width, 0, 0);
+        textureMode(NORMAL);
+
+        vertex(this.width, this.height, 0, 0, 0);
+        vertex(this.width, this.height, this.depth, 1, 0);
+        vertex(this.width, 0, this.depth, 1, 1);
+        vertex(this.width, 0, 0, 0, 1);
         endShape()
+        pop();
 
         // side top
         if (this.top == true) {
+            push();
+            translate(this.x, this.y, 0);
             // if (this.top_lines.all_lines_complete == true) {
-            image(this.texture_top);
+            // image(this.texture_top);
             texture(this.texture_top);
+            textureMode(NORMAL);
             // } else {
             //     texture(kitten);
             // }
@@ -122,20 +148,24 @@ class Box {
             vertex(this.width, this.height, this.depth, 1, 1);
             vertex(0, this.height, this.depth, 0, 1);
             endShape();
+            pop();
         }
 
         // // side bottom
         if (this.bottom == true) {
-            image(this.texture_bottom);
+            push();
+            translate(this.x, this.y, 0);
+            // image(this.texture_bottom);
             texture(this.texture_bottom);
+            textureMode(NORMAL);
             beginShape();
             vertex(0, 0, 0, 0, 0);
             vertex(this.width, 0, 0, 1, 0);
             vertex(this.width, this.height, 0, 1, 1);
             vertex(0, this.height, 0, 0, 1);
-            endShape()
+            endShape();
+            pop();
         }
 
-        pop();
     }
 }
