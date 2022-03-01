@@ -55,3 +55,15 @@ function resize_canvas() {
 }
 
 
+function brightenColor(colorObject, diff) {
+    let red = (colorObject.levels[0] + diff);
+    let green = (colorObject.levels[1] + diff);
+    let blue = (colorObject.levels[2] + diff);
+
+    // not larger than 255 and not smaller than 0
+    red = Math.min(Math.max(parseInt(red), 0), 255);
+    green = Math.min(Math.max(parseInt(green), 0), 255);
+    blue = Math.min(Math.max(parseInt(blue), 0), 255);
+
+    return color(red, green, blue);
+}

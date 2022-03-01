@@ -11,8 +11,6 @@ class Box {
         this.bottom = bottom;
         this.top = top;
 
-        let distance_between_lines = 20;
-
         this.texture_side_up = createGraphics(this.width, this.depth);
         this.texture_side_down = createGraphics(this.width, this.depth);
         this.texture_side_left = createGraphics(this.height, this.depth);
@@ -28,13 +26,13 @@ class Box {
             this.texture_top.background(color("#ffd700"));
             this.texture_bottom.background(color("#ffd700"));
         } else {
-            this.side_up_lines = new Lines(this.texture_side_up, distance_between_lines)
-            this.side_down_lines = new Lines(this.texture_side_down, distance_between_lines)
-            this.side_left_lines = new Lines(this.texture_side_left, distance_between_lines)
-            this.side_right_lines = new Lines(this.texture_side_right, distance_between_lines)
+            this.side_up_lines = new Lines(this.texture_side_up, DISTANCE_BETWEEN_LINES)
+            this.side_down_lines = new Lines(this.texture_side_down, DISTANCE_BETWEEN_LINES)
+            this.side_left_lines = new Lines(this.texture_side_left, DISTANCE_BETWEEN_LINES)
+            this.side_right_lines = new Lines(this.texture_side_right, DISTANCE_BETWEEN_LINES)
 
-            this.top_lines = new Lines(this.texture_top, distance_between_lines)
-            this.bottom_lines = new Lines(this.texture_bottom, distance_between_lines)
+            this.top_lines = new Lines(this.texture_top, DISTANCE_BETWEEN_LINES)
+            this.bottom_lines = new Lines(this.texture_bottom, DISTANCE_BETWEEN_LINES)
         }
 
         // image(this.texture_side_up);
