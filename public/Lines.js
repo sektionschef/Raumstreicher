@@ -7,17 +7,17 @@ class Line {
         this.limit_x = limit_x;
         this.limit_y = limit_y;
         this.history = [];
-        this.line_color = color("black");
-        this.line_color_second = color("black");
+        this.line_color = distortColor(color(STROKE_COLOR), STROKE_NOISE);
+        // this.line_color_second = color("black");
         // this.line_color = distortColor(color(STROKE_COLOR), STROKE_NOISE);
         // this.line_color_second = distortColor(color(STROKE_COLOR), STROKE_NOISE_2);
 
         this.run_complete = false;
         // this.stroke_size_dynamic = STROKE_SIZE;
-        this.stroke_size_dynamic = 5;
+        this.stroke_size_dynamic = 1;
         // this.stroke_speed = STROKE_SPEED
-        // this.stroke_speed = getRandomFromInterval(1, 1.5);
-        this.stroke_speed = 1;
+        // this.stroke_speed = 1;
+        this.stroke_speed = getRandomFromInterval(1, 3);
     }
 
     draw() {

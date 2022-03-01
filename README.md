@@ -1,5 +1,4 @@
 # Raum
 
-* grid class
-* basic boxes
+* boxes are not fully marked with lines
 * textures

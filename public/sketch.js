@@ -27,8 +27,9 @@ logging.info("FXHASH: " + fxhash);
 logging.info("Grid: " + GRID);
 
 // STUPID
-STROKE_COLOR = "#ffd700";
-STROKE_NOISE = 3;
+// STROKE_COLOR = "#ffd700";
+STROKE_COLOR = "#ffffff";
+STROKE_NOISE = 1;
 STROKE_NOISE_2 = 3;
 STROKE_SIZE = 1;
 
@@ -61,7 +62,7 @@ function draw() {
 
   ambientLight(255, 255, 255);
 
-  background(100);
+  background(0);
 
   camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
 
