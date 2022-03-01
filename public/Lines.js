@@ -13,11 +13,11 @@ class Line {
         // this.line_color_second = distortColor(color(STROKE_COLOR), STROKE_NOISE_2);
 
         this.run_complete = false;
-        // this.stroke_size_dynamic = STROKE_SIZE;
-        this.stroke_size_dynamic = 1;
+        this.stroke_size_dynamic = STROKE_SIZE;
+        // this.stroke_size_dynamic = 1;
         // this.stroke_speed = STROKE_SPEED
         // this.stroke_speed = 1;
-        this.stroke_speed = getRandomFromInterval(1, 3);
+        this.stroke_speed = getRandomFromInterval(0.8, 1);
     }
 
     draw() {
