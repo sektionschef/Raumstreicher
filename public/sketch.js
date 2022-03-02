@@ -25,7 +25,7 @@ STROKE_SIZE = 1;
 STROKE_DISTORT = getRandomFromInterval(0, 0.2);
 
 PAIRING_COUNT = Math.floor(getRandomFromInterval(4, 10));
-DISTANCE_BETWEEN_LINES = 10;
+DISTANCE_BETWEEN_LINES = 20;
 
 logging.info("FXHASH: " + fxhash);
 logging.info("Grid: " + GRID);
@@ -70,8 +70,8 @@ function draw() {
   translate(-width / 2, -height / 2, 0);
   // camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
 
-  background(BACKGROUND_COLOR);
-  image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
+  // background(BACKGROUND_COLOR);
+  // image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
   ambientLight(255, 255, 255);
   // directionalLight(255, 0, 0, 0);
@@ -81,7 +81,7 @@ function draw() {
 
   // grid.show_grid_debug();
 
-  grid.show_boxes();
+  // grid.show_boxes();
 
   // DUMMY
   // lines.draw_lines();
@@ -95,5 +95,28 @@ function draw() {
   // vertex(500, 500, 0, 1, 1);
   // vertex(0, 500, 0, 0, 1);
   // endShape();
+
+
+  // dummy vertices
+
+  let max = 100
+  strokeWeight(1);
+  stroke(color("blue"));
+  noFill();
+  let begin_x = getRandomFromInterval(0, max)
+  let begin_y = getRandomFromInterval(0, max)
+  let end_x = getRandomFromInterval(0, max)
+  let end_y = getRandomFromInterval(0, max)
+
+
+  beginShape();
+  curveVertex(begin_x, begin_y);
+  curveVertex(begin_x, begin_y);
+  for (var i = 0; i < 7; i++) {
+    curveVertex(getRandomFromInterval(0, max), getRandomFromInterval(0, max))
+  }
+  curveVertex(end_x, end_y);
+  curveVertex(end_x, end_y);
+  endShape();
 }
 
