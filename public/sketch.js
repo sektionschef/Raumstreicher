@@ -56,7 +56,7 @@ function setup() {
 
   backback = new Background(BACKGROUND_COLOR, BACKGROUND_NOISE);
 
-  paint = new Paint(0, 0, width, height);
+  paint = new Paint(300, 300, 400, 50);
 
   // DUMMY
   // dummy = createGraphics(500, 500);
