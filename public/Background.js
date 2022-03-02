@@ -80,20 +80,20 @@ class Background {
         // }
 
         // BARS
-        // const d = 1.3;
-        // const s = 3.5;
-        // // const c = BACKGROUND_COLOR;
-        // // const c = color("#c9c9c9");  // RELATIVE to color
-        // // const c = color("black");  // RELATIVE to color
-        // const c = brightenColor(color(BACKGROUND_COLOR), 30);
+        const d = 1.3;
+        const s = 3.5;
+        // const c = BACKGROUND_COLOR;
+        // const c = color("#c9c9c9");  // RELATIVE to color
+        // const c = color("black");  // RELATIVE to color
+        const c = brightenColor(color(BACKGROUND_COLOR), 30);
 
-        // const maxDist = 100;
-        // const dist = maxDist * d;
-        // const scl = (this.buffer.width / dist);
-        // for (let x = 0; x < this.buffer.width; x += scl) {
-        //     this.buffer.strokeWeight(s);
-        //     this.buffer.stroke(c);
-        //     this.buffer.line(x, 0, x, this.buffer.height);
-        // }
+        const maxDist = 100;
+        const dist = maxDist * d;
+        const scl = (this.buffer.width / dist);
+        for (let x = 0; x < this.buffer.width; x += scl) {
+            this.buffer.strokeWeight(s);
+            this.buffer.stroke(c);
+            this.buffer.line(x, 0, x, this.buffer.height);
+        }
     }
 }

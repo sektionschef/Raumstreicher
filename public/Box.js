@@ -19,13 +19,15 @@ class Box {
         this.texture_bottom = createGraphics(this.width, this.height);
 
         if (logging.getLevel() <= 1) {
-            this.texture_side_up.background(color("#0057b7"));
-            this.texture_side_down.background(color("#0057b7"));
-            this.texture_side_left.background(color("#0057b7"));
-            this.texture_side_right.background(color("#0057b7"));
-            this.texture_top.background(color("#ffd700"));
-            this.texture_bottom.background(color("#ffd700"));
         } else {
+            let opacity_val = "9e";
+            this.texture_side_up.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
+            this.texture_side_down.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
+            this.texture_side_left.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
+            this.texture_side_right.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
+            this.texture_top.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
+            this.texture_bottom.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
+
             this.side_up_lines = new Lines(this.texture_side_up, DISTANCE_BETWEEN_LINES)
             this.side_down_lines = new Lines(this.texture_side_down, DISTANCE_BETWEEN_LINES)
             this.side_left_lines = new Lines(this.texture_side_left, DISTANCE_BETWEEN_LINES)

@@ -13,13 +13,14 @@ function distortColor(colorObject, max_diff) {
     let red = (colorObject.levels[0] + getRandomFromInterval(-max_diff, max_diff));
     let green = (colorObject.levels[1] + getRandomFromInterval(-max_diff, max_diff));
     let blue = (colorObject.levels[2] + getRandomFromInterval(-max_diff, max_diff));
+    let opacity = colorObject.levels[3];
 
     // not larger than 255 and not smaller than 0
     red = Math.min(Math.max(parseInt(red), 0), 255);
     green = Math.min(Math.max(parseInt(green), 0), 255);
     blue = Math.min(Math.max(parseInt(blue), 0), 255);
 
-    return color(red, green, blue);
+    return color(red, green, blue, opacity);
 }
 
 // each time window.innerWidth changes
@@ -59,11 +60,12 @@ function brightenColor(colorObject, diff) {
     let red = (colorObject.levels[0] + diff);
     let green = (colorObject.levels[1] + diff);
     let blue = (colorObject.levels[2] + diff);
+    let opacity = colorObject.levels[3];
 
     // not larger than 255 and not smaller than 0
     red = Math.min(Math.max(parseInt(red), 0), 255);
     green = Math.min(Math.max(parseInt(green), 0), 255);
     blue = Math.min(Math.max(parseInt(blue), 0), 255);
 
-    return color(red, green, blue);
+    return color(red, green, blue, opacity);
 }
