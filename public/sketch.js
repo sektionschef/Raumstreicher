@@ -56,6 +56,8 @@ function setup() {
 
   backback = new Background(BACKGROUND_COLOR, BACKGROUND_NOISE);
 
+  paint = new Paint(0, 0, width, height);
+
   // DUMMY
   // dummy = createGraphics(500, 500);
   // dummy.background(255);
@@ -69,11 +71,14 @@ function setup() {
 function draw() {
   translate(-width / 2, -height / 2, 0);
   // camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
-
-  // background(BACKGROUND_COLOR);
-  // image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
-
   ambientLight(255, 255, 255);
+
+  background(BACKGROUND_COLOR);
+  image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
+
+  paint.show();
+  image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
+
   // directionalLight(255, 0, 0, 0);
   // pointLight(0, 0, 255, mouseX - 200, mouseY - 200, 200);
 
@@ -97,26 +102,5 @@ function draw() {
   // endShape();
 
 
-  // dummy vertices
-
-  let max = 100
-  strokeWeight(1);
-  stroke(color("blue"));
-  noFill();
-  let begin_x = getRandomFromInterval(0, max)
-  let begin_y = getRandomFromInterval(0, max)
-  let end_x = getRandomFromInterval(0, max)
-  let end_y = getRandomFromInterval(0, max)
-
-
-  beginShape();
-  curveVertex(begin_x, begin_y);
-  curveVertex(begin_x, begin_y);
-  for (var i = 0; i < 7; i++) {
-    curveVertex(getRandomFromInterval(0, max), getRandomFromInterval(0, max))
-  }
-  curveVertex(end_x, end_y);
-  curveVertex(end_x, end_y);
-  endShape();
 }
 
