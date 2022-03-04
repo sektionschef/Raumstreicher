@@ -25,18 +25,18 @@ class Paint {
 
 
         // create background
-        this.buffer.push();
         // this.buffer.background(this.color_master);
-        this.buffer.fill(this.color_master);
-        this.buffer.noStroke();
-        this.buffer.rect(this.border, this.border, width, height);
-        this.buffer.pop();
+        // this.buffer.push();
+        // this.buffer.fill(this.color_master);
+        // this.buffer.noStroke();
+        // this.buffer.rect(this.border, this.border, width, height);
+        // this.buffer.pop();
     }
 
     show() {
 
         translate(this.position_x, this.position_y);
-        this.paint_layer(40, 2, 10);
+        this.paint_layer(20, 3, 20);
         this.paint_layer(180, 1, 30);
     }
 
@@ -54,8 +54,8 @@ class Paint {
             this.buffer.stroke(this.color);
             this.buffer.noFill();
 
-            let begin_x = getRandomFromInterval(this.border, this.width)
-            let begin_y = getRandomFromInterval(this.border, this.height)
+            let begin_x = getRandomFromInterval(this.border, this.width + this.border)
+            let begin_y = getRandomFromInterval(this.border, this.height + this.border)
 
 
             this.buffer.beginShape();
@@ -65,8 +65,13 @@ class Paint {
             this.current_y = begin_y;
             for (var i = 0; i < this.brush_loops; i++) {
                 // maybe use constrain here 
-                this.current_x = constrain(this.current_x + getRandomFromInterval(-this.brush_size, this.brush_size), getRandomFromInterval(0, this.border), getRandomFromInterval((this.width + this.border), this.width + this.border * 2));
-                this.current_y = constrain(this.current_y + getRandomFromInterval(-this.brush_size, this.brush_size), getRandomFromInterval(0, this.border), getRandomFromInterval((this.width + this.border), this.width + this.border * 2));
+                if (fxrand() < 0.8) {
+                    this.current_x = constrain(this.current_x + getRandomFromInterval(-this.brush_size, this.brush_size), this.border, this.width + this.border);
+                    this.current_y = constrain(this.current_y + getRandomFromInterval(-this.brush_size, this.brush_size), this.border, this.height + this.border);
+                } else {
+                    this.current_x = constrain(this.current_x + getRandomFromInterval(-this.brush_size, this.brush_size), 0, this.width + this.border * 2);
+                    this.current_y = constrain(this.current_y + getRandomFromInterval(-this.brush_size, this.brush_size), 0, this.height + this.border * 2);
+                }
                 // this.current_y += getRandomFromInterval(-this.brush_size, this.brush_size);
                 this.buffer.curveVertex(this.current_x, this.current_y)
             }
