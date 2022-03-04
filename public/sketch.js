@@ -30,7 +30,7 @@ DISTANCE_BETWEEN_LINES = 20;
 logging.info("FXHASH: " + fxhash);
 logging.info("Grid: " + GRID);
 
-BACKGROUND_COLOR = "#dbdbdb";
+BACKGROUND_COLOR = "#f5f5f5";
 
 // STUPID
 STROKE_COLOR = "#5e5e5e";
@@ -86,7 +86,7 @@ function draw() {
 
   // grid.show_grid_debug();
 
-  // grid.show_boxes();
+  grid.show_boxes();
 
   // DUMMY
   // lines.draw_lines();
