@@ -59,41 +59,41 @@ class Background {
         // }
 
         // CORRODED - bubbles that hide background
-        // const d = 1.3  // 2 - 1 - 1.5 - 1.3
-        // const s = 3.5;  // 3 - 3 - 3 - 3.5
-        // // const c = BACKGROUND_COLOR;
-        // // const c = color("#c9c9c9");  // RELATIVE to color
-        // // const c = color("black");  // RELATIVE to color
-        // const c = brightenColor(color(BACKGROUND_COLOR), 30);
-        // const maxCell = 300;
-        // const cell = maxCell * d;
-        // const scl = this.buffer.width / cell;
-        // for (let x = 0; x < this.buffer.width; x += scl) {
-        //     for (let y = 0; y < this.buffer.height; y += scl) {
-        //         const r = random(s);  // FXRAND
-        //         if (r > d) {
-        //             this.buffer.stroke(c);
-        //             this.buffer.strokeWeight(r * d);
-        //             this.buffer.line(x + r, y - r, x, y);
-        //         }
-        //     }
-        // }
-
-        // BARS
-        const d = 1.3;
-        const s = 3.5;
+        const d = 1.3  // 2 - 1 - 1.5 - 1.3
+        const s = 3.5;  // 3 - 3 - 3 - 3.5
         // const c = BACKGROUND_COLOR;
         // const c = color("#c9c9c9");  // RELATIVE to color
         // const c = color("black");  // RELATIVE to color
         const c = brightenColor(color(BACKGROUND_COLOR), 30);
-
-        const maxDist = 100;
-        const dist = maxDist * d;
-        const scl = (this.buffer.width / dist);
+        const maxCell = 300;
+        const cell = maxCell * d;
+        const scl = this.buffer.width / cell;
         for (let x = 0; x < this.buffer.width; x += scl) {
-            this.buffer.strokeWeight(s);
-            this.buffer.stroke(c);
-            this.buffer.line(x, 0, x, this.buffer.height);
+            for (let y = 0; y < this.buffer.height; y += scl) {
+                const r = random(s);  // FXRAND
+                if (r > d) {
+                    this.buffer.stroke(c);
+                    this.buffer.strokeWeight(r * d);
+                    this.buffer.line(x + r, y - r, x, y);
+                }
+            }
         }
+
+        // BARS
+        // const d = 1.3;
+        // const s = 3.5;
+        // // const c = BACKGROUND_COLOR;
+        // // const c = color("#c9c9c9");  // RELATIVE to color
+        // // const c = color("black");  // RELATIVE to color
+        // const c = brightenColor(color(BACKGROUND_COLOR), 30);
+
+        // const maxDist = 100;
+        // const dist = maxDist * d;
+        // const scl = (this.buffer.width / dist);
+        // for (let x = 0; x < this.buffer.width; x += scl) {
+        //     this.buffer.strokeWeight(s);
+        //     this.buffer.stroke(c);
+        //     this.buffer.line(x, 0, x, this.buffer.height);
+        // }
     }
 }
