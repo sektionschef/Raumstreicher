@@ -43,6 +43,7 @@ class Grid {
         logging.debug("The real boxes are:");
         logging.debug(this.real_boxes);
 
+        this.delete_boxes();
         this.create_boxes();
     }
 
@@ -265,6 +266,16 @@ class Grid {
         }
     }
 
+    delete_boxes() {
+        for (var i = this.real_boxes.length - 1; i >= 0; i--) {
+            if (fxrand() < 0.1) {
+                // this.real_boxes[(i)]
+                this.real_boxes.splice(i, 1);
+            }
+        }
+    }
+
+
     create_boxes() {
         let height;
         let open;
@@ -275,6 +286,9 @@ class Grid {
             z = height - getRandomFromInterval(0, height);
             open = getRandomFromList([true, false]);
             box_real.body = new Box((box_real.c.x - box_real.a.x), (box_real.c.y - box_real.a.y), height, box_real.a.x, box_real.a.y, z, open, !open);
+            // } else 
+            // logging.debug("Box is skipped. creating a hole.")
+            // }
         }
     }
 

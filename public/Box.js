@@ -64,7 +64,6 @@ class Box {
 
         if (logging.getLevel() > 1) {
             this.draw_lines();
-
             this.top_paint.show();
         }
 
@@ -163,6 +162,7 @@ class Box {
             endShape();
             pop();
         }
+
 
     }
 }
