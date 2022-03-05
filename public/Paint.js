@@ -9,11 +9,7 @@ class Paint {
         this.border = 7;  // frame for the image
 
         this.area = this.width * this.height;
-        console.log("area: " + this.area_discount);
-
-        // att 20000 area,
-        // this.paint_layer(20, 3, 5); - 1000
-        // this.paint_layer(80, 1, 10); 250
+        // for area of 20000 use first layer 20 loops and second one 80.
 
         this.buffer = createGraphics(this.width + 2 * this.border, this.height + 2 * this.border);
 

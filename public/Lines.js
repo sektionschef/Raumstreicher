@@ -92,7 +92,7 @@ class Line {
             this.canvas.push();
             this.canvas.noStroke();
             this.canvas.fill(this.line_color);
-            this.canvas.circle(this.x * SCALING_FACTOR, this.y * SCALING_FACTOR, this.stroke_size_dynamic);
+            this.canvas.circle(this.x, this.y, this.stroke_size_dynamic);
             // this.canvas.fill(0);
             // this.canvas.fill(this.line_color_second);
             // this.canvas.circle(this.x * SCALING_FACTOR, this.y * SCALING_FACTOR, 1);
@@ -112,6 +112,13 @@ class Lines {
 
         this.bodies = [];
         this.all_lines_complete = false;
+
+        // debug
+        // push()
+        // translate(this.x, this.y)
+        // noFill();
+        // this.canvas.rect(0, 0, this.canvas.width, this.canvas.height)
+        // pop()
 
         let chosen_axis = getRandomFromList(["x", "y", "xy", "yx", "blank"])
         logging.debug(chosen_axis + " axis randomly chosen.");

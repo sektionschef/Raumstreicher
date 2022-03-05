@@ -1,8 +1,9 @@
 # Raum
 
-* area definiert paint count
 * boxes are not fully marked with lines
+* holes
 * distance between lines relative to size of area
+* dots and sparkles as textures
 * line plus structure
 * nicht nur distort sondern farben aus der palette insetzen
 * Seiten sind schraffirrt

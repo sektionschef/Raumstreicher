@@ -55,14 +55,11 @@ function setup() {
   logging.setLevel(SWITCH_LOGGING_LEVEL);
 
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
-  // grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT);
+  grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT);
 
   // backback = new Background(BACKGROUND_COLOR, BACKGROUND_NOISE);
 
   paint = new Paint(400, 50);
-  paint_s = new Paint(50, 50);
-  paint_m = new Paint(400, 400);
-  paint_l = new Paint(800, 600);
 
   // DUMMY
   // dummy = createGraphics(500, 500);
@@ -76,7 +73,7 @@ function setup() {
 
 function draw() {
   translate(-width / 2, -height / 2, 0);
-  // camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
+  camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
 
   ambientLight(255, 255, 255);
   // directionalLight(255, -width / 2, -height / 2, -1);
@@ -92,26 +89,17 @@ function draw() {
   // image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
   paint.show();
-  paint_s.show();
-  paint_m.show();
-  paint_l.show();
 
 
-  push();
-  translate(20, 20);
+  // push();
+  // translate(20, 20);
   // image(paint.buffer, 0, 0, paint.buffer * SCALING_FACTOR, paint.buffer * SCALING_FACTOR);
-  // translate(100, 100);
-  // image(paint_s.buffer, 0, 0, paint_s.buffer * SCALING_FACTOR, paint_s.buffer * SCALING_FACTOR);
-  // translate(100, 100);
-  // image(paint_m.buffer, 0, 0, paint_m.buffer * SCALING_FACTOR, paint_m.buffer * SCALING_FACTOR);
-  // translate(600, 100);
-  image(paint_l.buffer, 0, 0, paint_l.buffer * SCALING_FACTOR, paint_l.buffer * SCALING_FACTOR);
-  pop();
+  // pop();
 
 
   // grid.show_grid_debug();
 
-  // grid.show_boxes();
+  grid.show_boxes();
 
   // DUMMY
   // lines.draw_lines();
