@@ -31,7 +31,6 @@ class Paint {
         this.buffer.noStroke();
         this.buffer.rect(this.border, this.border, width, height);
         this.buffer.pop();
-
     }
 
     show() {

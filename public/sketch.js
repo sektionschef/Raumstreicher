@@ -56,7 +56,7 @@ function setup() {
 
   backback = new Background(BACKGROUND_COLOR, BACKGROUND_NOISE);
 
-  paint = new Paint(300, 300, 400, 50);
+  // paint = new Paint(300, 300, 400, 50);
 
   // DUMMY
   // dummy = createGraphics(500, 500);
@@ -70,18 +70,17 @@ function setup() {
 
 function draw() {
   translate(-width / 2, -height / 2, 0);
-  // camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
+  camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
   ambientLight(255, 255, 255);
 
   background(BACKGROUND_COLOR);
   image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
-  paint.show();
-  image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
+  // paint.show();
+  // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
   // directionalLight(255, 0, 0, 0);
   // pointLight(0, 0, 255, mouseX - 200, mouseY - 200, 200);
-
 
 
   // grid.show_grid_debug();

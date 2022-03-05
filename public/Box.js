@@ -20,13 +20,16 @@ class Box {
 
         if (logging.getLevel() <= 1) {
         } else {
-            let opacity_val = "9e";
-            this.texture_side_up.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
-            this.texture_side_down.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
-            this.texture_side_left.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
-            this.texture_side_right.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
-            this.texture_top.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
-            this.texture_bottom.background(distortColor(color(BACKGROUND_COLOR + opacity_val), 5));
+            let opacity_val = "ff";
+            // let opacity_val = "9e";
+            this.texture_side_up.background(color("#ff8880" + opacity_val));
+            this.texture_side_down.background(color("#ff8880" + opacity_val));
+            this.texture_side_left.background(color("#ff8880" + opacity_val));
+            this.texture_side_right.background(color("#ff8880" + opacity_val));
+
+            this.texture_top.background(color("#ffe6a1" + opacity_val));
+            this.texture_bottom.background(color("#ffd387" + opacity_val));
+            // this.texture_top_paint = new Paint(this.x, this.y, this.width, this.height);
 
             this.side_up_lines = new Lines(this.texture_side_up, DISTANCE_BETWEEN_LINES)
             this.side_down_lines = new Lines(this.texture_side_down, DISTANCE_BETWEEN_LINES)
@@ -69,7 +72,10 @@ class Box {
 
         if (logging.getLevel() > 1) {
             this.draw_lines();
+            // this.texture_top_paint.show();
         }
+
+        // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
         push();
         translate(this.x, this.y, 0);
@@ -138,6 +144,7 @@ class Box {
             // if (this.top_lines.all_lines_complete == true) {
             // image(this.texture_top);
             texture(this.texture_top);
+            // texture(this.texture_top_paint.buffer);  // OIDA
             textureMode(NORMAL);
             // } else {
             //     texture(kitten);
