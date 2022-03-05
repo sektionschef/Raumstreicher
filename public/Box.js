@@ -12,9 +12,9 @@ class Box {
         this.top = top;
 
         this.texture_side_up = createGraphics(this.width, this.depth);
-        this.texture_side_down = createGraphics(this.width, this.depth);
-        this.texture_side_left = createGraphics(this.height, this.depth);
-        this.texture_side_right = createGraphics(this.height, this.depth);
+        this.texture_side_down = createGraphics(this.depth, this.width);
+        this.texture_side_left = createGraphics(this.depth, this.height);
+        this.texture_side_right = createGraphics(this.depth, this.height);
         this.texture_top = createGraphics(this.width, this.height);
         this.texture_bottom = createGraphics(this.width, this.height);
 

@@ -120,7 +120,8 @@ class Lines {
         // this.canvas.rect(0, 0, this.canvas.width, this.canvas.height)
         // pop()
 
-        let chosen_axis = getRandomFromList(["x", "y", "xy", "yx", "blank"])
+        // let chosen_axis = getRandomFromList(["x", "y", "xy", "yx", "blank"])
+        let chosen_axis = getRandomFromList(["y"])
         logging.debug(chosen_axis + " axis randomly chosen.");
 
         if (chosen_axis == "x") {

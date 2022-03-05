@@ -25,7 +25,7 @@ STROKE_SIZE = 1;
 STROKE_DISTORT = getRandomFromInterval(0, 0.2);
 
 PAIRING_COUNT = Math.floor(getRandomFromInterval(4, 10));
-DISTANCE_BETWEEN_LINES = 20;
+DISTANCE_BETWEEN_LINES = 30;
 
 logging.info("FXHASH: " + fxhash);
 logging.info("Grid: " + GRID);

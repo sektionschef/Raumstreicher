@@ -1,7 +1,7 @@
 # Raum
 
-* boxes are not fully marked with lines
 * holes
+* no walls
 * distance between lines relative to size of area
 * dots and sparkles as textures
 * line plus structure
