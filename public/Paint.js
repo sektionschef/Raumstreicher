@@ -3,41 +3,44 @@
 // border relative to size
 
 class Paint {
-    constructor(position_x, position_y, width, height) {
-        this.position_x = position_x;
-        this.position_y = position_y;
+    constructor(width, height) {
         this.width = width;
         this.height = height;
         this.border = 7;  // frame for the image
 
-        this.area_discount = this.width * this.height;
+        this.area = this.width * this.height;
+        console.log("area: " + this.area_discount);
+
+        // att 20000 area,
+        // this.paint_layer(20, 3, 5); - 1000
+        // this.paint_layer(80, 1, 10); 250
 
         this.buffer = createGraphics(this.width + 2 * this.border, this.height + 2 * this.border);
 
         // this.strokeWeight = 2;
-        this.opacity = "9C";  // #24ccc9
-        this.color_master = color("#64C7D3" + this.opacity);
+        this.color_master = color(TOP_COLOR);
 
         this.brush_size = 20
 
-        this.counter_max = 100;
+        this.counter_max = 70;
         this.counter = 0;
 
 
         // create background
         // this.buffer.background(this.color_master);
+
+        this.opacity = "BF";  // #24ccc9
+        // this.opacity = "ff";
         this.buffer.push();
-        this.buffer.fill(this.color_master);
+        this.buffer.fill(color(TOP_COLOR + this.opacity));
         this.buffer.noStroke();
         this.buffer.rect(this.border, this.border, width, height);
         this.buffer.pop();
     }
 
     show() {
-
-        translate(this.position_x, this.position_y);
-        this.paint_layer(10, 5, 20);
-        this.paint_layer(80, 1, 30);
+        this.paint_layer(this.area / 1000, 3, 5);
+        this.paint_layer(this.area / 250, 1, 10);
     }
 
     paint_layer(brush_loops, stroke_size, color_noise) {

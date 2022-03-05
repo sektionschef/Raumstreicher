@@ -22,14 +22,13 @@ class Box {
         } else {
             let opacity_val = "ff";
             // let opacity_val = "9e";
-            this.texture_side_up.background(color("#ff8880" + opacity_val));
-            this.texture_side_down.background(color("#ff8880" + opacity_val));
-            this.texture_side_left.background(color("#ff8880" + opacity_val));
-            this.texture_side_right.background(color("#ff8880" + opacity_val));
+            this.texture_side_up.background(color(INSIDE_COLOR + opacity_val));
+            this.texture_side_down.background(color(INSIDE_COLOR + opacity_val));
+            this.texture_side_left.background(color(INSIDE_COLOR + opacity_val));
+            this.texture_side_right.background(color(INSIDE_COLOR + opacity_val));
 
-            this.texture_top.background(color("#ffe6a1" + opacity_val));
-            this.texture_bottom.background(color("#ffd387" + opacity_val));
-            // this.texture_top_paint = new Paint(this.x, this.y, this.width, this.height);
+            this.texture_top.background(color(TOP_COLOR + opacity_val));
+            this.texture_bottom.background(color(TOP_COLOR + opacity_val));
 
             this.side_up_lines = new Lines(this.texture_side_up, DISTANCE_BETWEEN_LINES)
             this.side_down_lines = new Lines(this.texture_side_down, DISTANCE_BETWEEN_LINES)
@@ -38,16 +37,9 @@ class Box {
 
             this.top_lines = new Lines(this.texture_top, DISTANCE_BETWEEN_LINES)
             this.bottom_lines = new Lines(this.texture_bottom, DISTANCE_BETWEEN_LINES)
+
+            this.top_paint = new Paint(this.x, this.y, this.width, this.height);
         }
-
-        // image(this.texture_side_up);
-        // image(this.texture_side_left);
-        // image(this.texture_side_down);
-        // image(this.texture_side_right);
-        // image(this.texture_top);
-        // image(this.texture_bottom);
-
-
     }
 
     draw_lines() {
@@ -72,7 +64,8 @@ class Box {
 
         if (logging.getLevel() > 1) {
             this.draw_lines();
-            // this.texture_top_paint.show();
+
+            this.top_paint.show();
         }
 
         // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
@@ -141,19 +134,16 @@ class Box {
         if (this.top == true) {
             push();
             translate(this.x, this.y, 0);
-            // if (this.top_lines.all_lines_complete == true) {
-            // image(this.texture_top);
-            texture(this.texture_top);
-            // texture(this.texture_top_paint.buffer);  // OIDA
+
+            // texture(this.texture_top);
+            texture(this.top_paint.buffer);
             textureMode(NORMAL);
-            // } else {
-            //     texture(kitten);
-            // }
             beginShape();
             vertex(0, 0, this.depth, 0, 0);
             vertex(this.width, 0, this.depth, 1, 0);
             vertex(this.width, this.height, this.depth, 1, 1);
             vertex(0, this.height, this.depth, 0, 1);
+
             endShape();
             pop();
         }
