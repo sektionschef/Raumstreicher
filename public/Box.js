@@ -16,7 +16,9 @@ class Box {
         this.texture_side_left = createGraphics(this.depth, this.height);
         this.texture_side_right = createGraphics(this.depth, this.height);
         this.texture_top = createGraphics(this.width, this.height);
+        // this.texture_top = createGraphics(this.height, this.width);
         this.texture_bottom = createGraphics(this.width, this.height);
+        // this.texture_bottom = createGraphics(this.height, this.width);
 
         if (logging.getLevel() <= 1) {
         } else {
@@ -38,7 +40,7 @@ class Box {
             this.top_lines = new Lines(this.texture_top, DISTANCE_BETWEEN_LINES)
             this.bottom_lines = new Lines(this.texture_bottom, DISTANCE_BETWEEN_LINES)
 
-            this.top_paint = new Paint(this.x, this.y, this.width, this.height);
+            this.top_paint = new Paint(this.width, this.height);
         }
     }
 

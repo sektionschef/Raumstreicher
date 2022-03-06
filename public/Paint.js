@@ -4,7 +4,7 @@ class Paint {
     constructor(width, height) {
         this.width = width;
         this.height = height;
-        this.border = 5;  // frame for the image
+        this.border = 25;  // frame for the image
 
         this.area = this.width * this.height;
 
