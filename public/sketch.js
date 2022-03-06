@@ -71,13 +71,14 @@ function draw() {
   camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
   // camera(mouseX, mouseY, (height / 1.1) / tan(PI / 6), width / 2, height / 2, 0, 0, 1, 0);
 
-  ambientLight(255, 255, 255);
+  // ambientLight(255, 255, 255);
   // directionalLight(255, 255, 255, 0.25, 0.25, -1);
   // directionalLight(255, 255, 255, 0, 0, -1);
 
-  // pointLight(255, 255, 255, width / 2, height / 2, 700);
+  pointLight(255, 255, 255, width / 2, height / 2, 600);
   // pointLight(255, 255, 255, width, height, 700);
   // pointLight(255, 255, 255, 0, height, 700);
+  pointLight(255, 255, 255, width / 4 * 3, height / 4 * 3, 600);
 
   ambientMaterial(255);
   // specularMaterial(255);
