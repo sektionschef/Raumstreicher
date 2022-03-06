@@ -27,7 +27,7 @@ class Box {
             this.texture_side_left.background(color(INSIDE_COLOR + opacity_val));
             this.texture_side_right.background(color(INSIDE_COLOR + opacity_val));
 
-            this.texture_top.background(color(TOP_COLOR + opacity_val));
+            // this.texture_top.background(color(TOP_COLOR + opacity_val));
             this.texture_bottom.background(color(TOP_COLOR + opacity_val));
 
             this.side_up_lines = new Lines(this.texture_side_up, DISTANCE_BETWEEN_LINES)
@@ -64,7 +64,7 @@ class Box {
 
         if (logging.getLevel() > 1) {
             this.draw_lines();
-            this.top_paint.show();
+            this.top_paint.show(this.texture_top);
         }
 
         // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);

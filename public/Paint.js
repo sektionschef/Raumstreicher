@@ -34,9 +34,13 @@ class Paint {
         this.buffer.pop();
     }
 
-    show() {
+    show(on_top_layer) {
         this.paint_layer(this.area / 1000, 3, 5);
         this.paint_layer(this.area / 250, 1, 10);
+
+        if (typeof (on_top_layer) != "undefined") {
+            this.buffer.image(on_top_layer, 0, 0, this.buffer.width, this.buffer.height);
+        }
     }
 
     paint_layer(brush_loops, stroke_size, color_noise) {

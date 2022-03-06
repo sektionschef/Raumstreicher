@@ -1,16 +1,15 @@
 # Raum
 
-* holes
-* no walls
-* distance between lines relative to size of area
 * dots and sparkles as textures
 * line plus structure
+* ein paar wände nicht
 * nicht nur distort sondern farben aus der palette insetzen
 * Seiten sind schraffirrt
-* Dots to paint nicht nur curves + corrodes adden
+
+
 * lamp
 * camera
-* structure backgrounds in funktionen, andere textrues auf boxen ausprobieren
+* structure backgrounds in funktionen
 * adding planes
 * size of canvas - 3k
 * difference camera and no camera, in respect to translate -2/width

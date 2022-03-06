@@ -6,6 +6,7 @@ class Background {
 
         this.buffer = createGraphics(width, height);
 
+        // NOISE
         // this.buffer.loadPixels()
         // for (let x = 0; x < this.buffer.width; x++) {
         //     for (let y = 0; y < this.buffer.height; y++) {
@@ -18,31 +19,32 @@ class Background {
         // background_buffer.stroke(10);
         // background_buffer.point(getRandomFromInterval(0, width), getRandomFromInterval(0, height));
 
-        // const ammount = 3000;
-        // for (let i = 0; i < ammount; i++) {
-        //     let x = getRandomFromInterval(0, this.buffer.width);
-        //     let y = getRandomFromInterval(0, this.buffer.height);
-        //     this.buffer.strokeWeight(getRandomFromInterval(1, 3));
-        //     this.buffer.stroke(getRandomFromInterval(150, 250));
-        //     this.buffer.point(x, y);
-        // }
+        // Dots
+        const ammount = 3000;
+        for (let i = 0; i < ammount; i++) {
+            let x = getRandomFromInterval(0, this.buffer.width);
+            let y = getRandomFromInterval(0, this.buffer.height);
+            this.buffer.strokeWeight(getRandomFromInterval(1, 3));
+            this.buffer.stroke(getRandomFromInterval(150, 250));
+            this.buffer.point(x, y);
+        }
 
 
         // CANVAS
-        const d = 4;  // 3 - 4
-        const s = 3;  // 3 - 3
-        const c = brightenColor(color(BACKGROUND_COLOR), -20);
-        // const c = color("#c9c9c9");  // RELATIVE to color
-        const maxCell = 100;
-        const cell = maxCell * d;
-        const scl = this.buffer.width / cell;
-        for (let x = 0; x < this.buffer.width; x += scl) {
-            for (let y = 0; y < this.buffer.height; y += scl) {
-                this.buffer.strokeWeight(s);
-                this.buffer.stroke(c);
-                this.buffer.point(x, y);
-            }
-        }
+        // const d = 4;  // 3 - 4
+        // const s = 3;  // 3 - 3
+        // const c = brightenColor(color(BACKGROUND_COLOR), -20);
+        // // const c = color("#c9c9c9");  // RELATIVE to color
+        // const maxCell = 100;
+        // const cell = maxCell * d;
+        // const scl = this.buffer.width / cell;
+        // for (let x = 0; x < this.buffer.width; x += scl) {
+        //     for (let y = 0; y < this.buffer.height; y += scl) {
+        //         this.buffer.strokeWeight(s);
+        //         this.buffer.stroke(c);
+        //         this.buffer.point(x, y);
+        //     }
+        // }
 
         // LINES
         // const d = 4;  // 3

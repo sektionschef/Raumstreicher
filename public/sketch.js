@@ -44,11 +44,10 @@ STROKE_SIZE = 1;
 
 BACKGROUND_NOISE = getRandomFromInterval(5, 20);
 
-let kitten;
+let dotty;
 
 function preload() {
   font = loadFont('SourceSansPro-Regular.otf');
-  kitten = loadImage("kitten.jpg");
 }
 
 function setup() {
@@ -59,13 +58,19 @@ function setup() {
 
   // backback = new Background(BACKGROUND_COLOR, BACKGROUND_NOISE);
 
-  paint = new Paint(400, 50);
+  // dotty = createGraphics(width, height);
 
-  // DUMMY
-  // dummy = createGraphics(500, 500);
-  // dummy.background(255);
-  // dummy.background("red");
-  // lines = new Lines(dummy, 15);
+  // dotty.push();
+  // dotty.noStroke();
+
+  // dotty.fill(color(TOP_COLOR));
+  // dotty.rect(0, 0, 100, 100);
+
+  // for (var i = 0; i < 750; i++) {
+  //   dotty.fill(brightenColor(distortColor(color(TOP_COLOR), 20), -20));
+  //   dotty.circle(getRandomFromInterval(0, 100), getRandomFromInterval(0, 100), 3);
+  // }
+  // dotty.pop();
 
   resize_canvas();
 }
@@ -76,44 +81,24 @@ function draw() {
   camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
 
   ambientLight(255, 255, 255);
-  // directionalLight(255, -width / 2, -height / 2, -1);
-  //move your mouse to change light direction
-  // let dirX = (mouseX / width - 0.5) * 2;
-  // let dirY = (mouseY / height - 0.5) * 2;
-  // directionalLight(250, 250, 250, -dirX, -dirY, -1);
-  // pointLight(255, 255, 255, mouseX - 200, mouseY - 200, 1500);
+  // directionalLight(255, 255, 255, 0.25, 0.25, -1);
+  // directionalLight(255, 255, 255, 0, 0, -1);
 
-  // ambientMaterial(255);
+  // pointLight(255, 255, 255, width / 2, height / 2, 700);
+  // pointLight(255, 255, 255, width, height, 700);
+  // pointLight(255, 255, 255, 0, height, 900);
+
+  ambientMaterial(255);
+  // specularMaterial(255);
 
   background(BACKGROUND_COLOR);
-  // image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
-  paint.show();
-
-
-  // push();
-  // translate(20, 20);
-  // image(paint.buffer, 0, 0, paint.buffer * SCALING_FACTOR, paint.buffer * SCALING_FACTOR);
-  // pop();
-
-
-  // grid.show_grid_debug();
+  // // grid.show_grid_debug();
 
   grid.show_boxes();
 
-  // DUMMY
-  // lines.draw_lines();
-  // image(dummy, 500, 500);
-  // texture(dummy);
-  // // box(500);
 
-  // beginShape();
-  // vertex(0, 0, 0, 0, 0);
-  // vertex(500, 0, 0, 1, 0);
-  // vertex(500, 500, 0, 1, 1);
-  // vertex(0, 500, 0, 0, 1);
-  // endShape();
-
-
+  // image(dotty, 0, 0, dotty.width, dotty.height)
+  // image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 }
 
