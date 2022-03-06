@@ -54,23 +54,45 @@ function setup() {
   logging.setLevel(SWITCH_LOGGING_LEVEL);
 
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
-  grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT);
+  // grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT);
 
   // backback = new Background(BACKGROUND_COLOR, BACKGROUND_NOISE);
 
-  // dotty = createGraphics(width, height);
+  dotty = createGraphics(width, height);
 
-  // dotty.push();
-  // dotty.noStroke();
+  dotty.push();
+  dotty.noStroke();
+  for (var i = 0; i < 1000; i++) {
+    dotty.fill(brightenColor(distortColor(color(TOP_COLOR), 2), 100));
+    dotty.circle(getRandomFromInterval(0, dotty.width), getRandomFromInterval(0, dotty.height), 10);
+  }
 
-  // dotty.fill(color(TOP_COLOR));
-  // dotty.rect(0, 0, 100, 100);
+  dotty.pop();
 
-  // for (var i = 0; i < 750; i++) {
-  //   dotty.fill(brightenColor(distortColor(color(TOP_COLOR), 20), -20));
-  //   dotty.circle(getRandomFromInterval(0, 100), getRandomFromInterval(0, 100), 3);
-  // }
-  // dotty.pop();
+  grainy = createGraphics(width, height);
+  let loop_count = 500;
+  let size_point = 7;
+
+  grainy.push()
+  grainy.noStroke();
+  grainy.stroke(color(BACKGROUND_COLOR));
+  grainy.strokeWeight(size_point);
+  let x = getRandomFromInterval(grainy.width / 8 * 2, grainy.height / 8 * 3);
+  let y = getRandomFromInterval(grainy.width / 8 * 7, grainy.height / 8 * 6);
+  for (var i = 0; i < loop_count; i++) {
+    if (fxrand() > 0.4) {
+      grainy.point(x + getRandomFromInterval(-(grainy.width / 12), (grainy.width / 12)), y + getRandomFromInterval(-(grainy.width / 10), (grainy.width / 10)));
+    } else if (fxrand() > 0.7) {
+      grainy.point(x + getRandomFromInterval(-(grainy.width / 6), (grainy.width / 6)), y + getRandomFromInterval(-(grainy.width / 9), (grainy.width / 9)));
+    } else {
+      grainy.point(x + getRandomFromInterval(-(grainy.width / 5), (grainy.width / 5)), y + getRandomFromInterval(-(grainy.width / 7), (grainy.width / 7)));
+    }
+  }
+
+  grainy.pop()
+
+
+  painty = new Paint(width, height, TOP_COLOR);
 
   resize_canvas();
 }
@@ -90,17 +112,22 @@ function draw() {
   // pointLight(255, 255, 255, width, height, 700);
   // pointLight(255, 255, 255, 0, height, 700);
 
-  // ambientMaterial(255);
-  specularMaterial(255);
+  ambientMaterial(255);
+  // specularMaterial(255);
 
   background(BACKGROUND_COLOR);
 
   // // grid.show_grid_debug();
 
-  grid.show_boxes();
+  // grid.show_boxes();
 
-
-  // image(dotty, 0, 0, dotty.width, dotty.height)
   // image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
+
+  painty.show();
+
+  image(painty.buffer, 0, 0)
+  image(dotty, 0, 0, dotty.width, dotty.height)
+  image(grainy, 0, 0, grainy.width, grainy.height)
+
 }
 

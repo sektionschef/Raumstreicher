@@ -51,7 +51,7 @@ class Paint {
         this.color_noise = color_noise;
 
         if (this.counter < this.counter_max) {
-            this.color = distortColor(color(this.color_master), this.color_noise);
+            this.color = brightenColor(distortColor(color(this.color_master), this.color_noise), 30);
 
             this.counter += 1;
 

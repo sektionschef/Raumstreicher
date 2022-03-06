@@ -1,6 +1,5 @@
 # Raum
 
-* bug width or height of 0
 * ein paar wände nicht
 * nicht nur distort sondern farben aus der palette insetzen
 * distort nicht nur farblich sondern auch Helligkeit
