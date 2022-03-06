@@ -77,8 +77,10 @@ function setup() {
 
 
 function draw() {
+  camera(0, 0, (height) / tan(PI / 6), 0, 0, 0, 0, 1, 0);
+  // camera(0, 0, (height / 2) / tan(PI / 6), 0, 0, 0, 0, 1, 0);
   translate(-width / 2, -height / 2, 0);
-  camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
+  // camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
 
   ambientLight(255, 255, 255);
   // directionalLight(255, 255, 255, 0.25, 0.25, -1);
@@ -86,10 +88,10 @@ function draw() {
 
   // pointLight(255, 255, 255, width / 2, height / 2, 700);
   // pointLight(255, 255, 255, width, height, 700);
-  // pointLight(255, 255, 255, 0, height, 900);
+  // pointLight(255, 255, 255, 0, height, 700);
 
-  ambientMaterial(255);
-  // specularMaterial(255);
+  // ambientMaterial(255);
+  specularMaterial(255);
 
   background(BACKGROUND_COLOR);
 

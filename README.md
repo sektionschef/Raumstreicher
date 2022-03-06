@@ -1,10 +1,10 @@
 # Raum
 
-* dots and sparkles as textures
-* line plus structure
+* bug width or height of 0
 * ein paar wände nicht
 * nicht nur distort sondern farben aus der palette insetzen
-* Seiten sind schraffirrt
+* distort nicht nur farblich sondern auch Helligkeit
+* Seiten sind schraffiert
 
 
 * lamp
