@@ -16,18 +16,16 @@ class Box {
         this.texture_side_left = createGraphics(this.depth, this.height);
         this.texture_side_right = createGraphics(this.depth, this.height);
         this.texture_top = createGraphics(this.width, this.height);
-        // this.texture_top = createGraphics(this.height, this.width);
         this.texture_bottom = createGraphics(this.width, this.height);
-        // this.texture_bottom = createGraphics(this.height, this.width);
 
         if (logging.getLevel() <= 1) {
         } else {
             let opacity_val = "ff";
             // let opacity_val = "9e";
-            this.texture_side_up.background(color(INSIDE_COLOR + opacity_val));
-            this.texture_side_down.background(color(INSIDE_COLOR + opacity_val));
-            this.texture_side_left.background(color(INSIDE_COLOR + opacity_val));
-            this.texture_side_right.background(color(INSIDE_COLOR + opacity_val));
+            // this.texture_side_up.background(color(INSIDE_COLOR + opacity_val));
+            // this.texture_side_down.background(color(INSIDE_COLOR + opacity_val));
+            // this.texture_side_left.background(color(INSIDE_COLOR + opacity_val));
+            // this.texture_side_right.background(color(INSIDE_COLOR + opacity_val));
 
             // this.texture_top.background(color(TOP_COLOR + opacity_val));
             this.texture_bottom.background(color(TOP_COLOR + opacity_val));
@@ -40,7 +38,14 @@ class Box {
             this.top_lines = new Lines(this.texture_top, DISTANCE_BETWEEN_LINES)
             this.bottom_lines = new Lines(this.texture_bottom, DISTANCE_BETWEEN_LINES)
 
-            this.top_paint = new Paint(this.width, this.height);
+            // this.top_paint = new Paint(this.width, this.height);
+
+            this.top_paint = new Paint(this.texture_top.width, this.texture_top.height, TOP_COLOR);
+
+            this.side_up_paint = new Paint(this.texture_side_up.width, this.texture_side_up.height, INSIDE_COLOR);
+            this.side_down_paint = new Paint(this.texture_side_down.width, this.texture_side_down.height, INSIDE_COLOR);
+            this.side_left_paint = new Paint(this.texture_side_left.width, this.texture_side_left.height, INSIDE_COLOR);
+            this.side_right_paint = new Paint(this.texture_side_right.width, this.texture_side_right.height, INSIDE_COLOR);
         }
     }
 
@@ -72,6 +77,11 @@ class Box {
             if (this.top == true) {
                 this.top_paint.show(this.texture_top);
             }
+
+            this.side_up_paint.show(this.texture_side_up);
+            this.side_down_paint.show(this.texture_side_down);
+            this.side_left_paint.show(this.texture_side_left);
+            this.side_right_paint.show(this.texture_side_right);
         }
 
         // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
@@ -83,7 +93,8 @@ class Box {
         beginShape();
         // image(this.texture_side_up);
         textureMode(NORMAL);
-        texture(this.texture_side_up);
+        // texture(this.texture_side_up);
+        texture(this.side_up_paint.buffer);
         vertex(0, 0, 0, 0, 0);
         vertex(this.width, 0, 0, 1, 0);
         vertex(this.width, 0, this.depth, 1, 1);
@@ -98,7 +109,8 @@ class Box {
         translate(this.x, this.y, 0);
         beginShape();
         // image(this.texture_side_left);
-        texture(this.texture_side_left);
+        // texture(this.texture_side_left);
+        texture(this.side_left_paint.buffer);
         textureMode(NORMAL);
         vertex(0, this.height, this.depth, 0, 0);
         vertex(0, this.height, 0, 1, 0);
@@ -112,7 +124,8 @@ class Box {
         translate(this.x, this.y, 0);
         beginShape();
         // image(this.texture_side_down);
-        texture(this.texture_side_down);
+        // texture(this.texture_side_down);
+        texture(this.side_down_paint.buffer);
         textureMode(NORMAL);
         vertex(this.width, this.height, 0, 0, 0);
         vertex(this.width, this.height, this.depth, 1, 0);
@@ -126,7 +139,8 @@ class Box {
         translate(this.x, this.y, 0);
         beginShape();
         // image(this.texture_side_right);
-        texture(this.texture_side_right);
+        // texture(this.texture_side_right);
+        texture(this.side_right_paint.buffer);
         textureMode(NORMAL);
 
         vertex(this.width, this.height, 0, 0, 0);

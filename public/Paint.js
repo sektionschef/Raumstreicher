@@ -1,7 +1,7 @@
 // border relative to size
 
 class Paint {
-    constructor(width, height) {
+    constructor(width, height, color) {
         this.width = width;
         this.height = height;
         this.border = 25;  // frame for the image
@@ -11,7 +11,7 @@ class Paint {
         this.buffer = createGraphics(this.width + 2 * this.border, this.height + 2 * this.border);
 
         // this.strokeWeight = 2;
-        this.color_master = color(TOP_COLOR);
+        this.color_master = color;
 
         this.brush_size = 20
 
@@ -25,7 +25,7 @@ class Paint {
         this.opacity = "BF";  // #24ccc9
         // this.opacity = "ff";
         this.buffer.push();
-        this.buffer.fill(color(TOP_COLOR + this.opacity));
+        this.buffer.fill(this.color_master + this.opacity);
         this.buffer.noStroke();
         this.buffer.rect(this.border, this.border, width, height);
         this.buffer.pop();
@@ -51,7 +51,7 @@ class Paint {
         this.color_noise = color_noise;
 
         if (this.counter < this.counter_max) {
-            this.color = distortColor(this.color_master, this.color_noise);
+            this.color = distortColor(color(this.color_master), this.color_noise);
 
             this.counter += 1;
 
