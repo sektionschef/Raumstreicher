@@ -1,15 +1,12 @@
-// verfranst statt harter cut
-// constrain mit random kombiniert
 // border relative to size
 
 class Paint {
     constructor(width, height) {
         this.width = width;
         this.height = height;
-        this.border = 7;  // frame for the image
+        this.border = 5;  // frame for the image
 
         this.area = this.width * this.height;
-        // for area of 20000 use first layer 20 loops and second one 80.
 
         this.buffer = createGraphics(this.width + 2 * this.border, this.height + 2 * this.border);
 
@@ -35,8 +32,13 @@ class Paint {
     }
 
     show(on_top_layer) {
-        this.paint_layer(this.area / 1000, 3, 5);
-        this.paint_layer(this.area / 250, 1, 10);
+
+        // for area of 20000 use first layer 20 loops and second one 80.
+        this.loop_1 = constrain(this.area / 1000, 100, 800)
+        this.loop_2 = constrain(this.area / 250, 50, 230)
+
+        this.paint_layer(this.loop_1, 3, 5);
+        this.paint_layer(this.loop_2, 1, 10);
 
         if (typeof (on_top_layer) != "undefined") {
             this.buffer.image(on_top_layer, 0, 0, this.buffer.width, this.buffer.height);

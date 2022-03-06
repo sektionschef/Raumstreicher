@@ -48,7 +48,9 @@ class Box {
         this.side_left_lines.draw_lines();
         this.side_right_lines.draw_lines();
 
-        this.top_lines.draw_lines();
+        if (this.top == true) {
+            this.top_lines.draw_lines();
+        }
         this.bottom_lines.draw_lines();
 
         this.side_up_lines.check_all_complete();
@@ -64,7 +66,10 @@ class Box {
 
         if (logging.getLevel() > 1) {
             this.draw_lines();
-            this.top_paint.show(this.texture_top);
+
+            if (this.top == true) {
+                this.top_paint.show(this.texture_top);
+            }
         }
 
         // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
