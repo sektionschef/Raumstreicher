@@ -1,9 +1,9 @@
 # Raum
 
-* mehrere Farben inside outside
+* wachsanimation
+* create center
 * resize works
 * move camera in arc
-* wachsanimation
 
 * ein paar wände nicht
 

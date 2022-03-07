@@ -7,6 +7,8 @@ class Box {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.depth_current = this.z;
+        this.boxes_emerged = false;
 
         this.bottom = bottom;
         this.top = top;
@@ -17,6 +19,7 @@ class Box {
         this.texture_side_right = createGraphics(this.depth, this.height);
         this.texture_top = createGraphics(this.width, this.height);
         this.texture_bottom = createGraphics(this.width, this.height);
+
 
         if (logging.getLevel() <= 1) {
         } else {
@@ -70,6 +73,11 @@ class Box {
     }
 
     show() {
+        if (this.depth_current <= this.depth) {
+            this.depth_current += 1;
+        } else {
+            this.boxes_emerged = true;
+        }
 
         if (logging.getLevel() > 1) {
             this.draw_lines();
@@ -89,19 +97,24 @@ class Box {
 
         // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
+        // side up
         push();
         translate(this.x, this.y, this.z);
         // if (this.side_up_lines.all_lines_complete == true) {
-        // side up
-        beginShape();
-        // image(this.texture_side_up);
-        textureMode(NORMAL);
-        // texture(this.texture_side_up);
-        texture(this.side_up_paint.buffer);
+        if (this.boxes_emerged == false) {
+            beginShape(CLOSE);
+            noFill();
+            strokeWeight(4);
+            stroke(INSIDE_COLOR);
+            textureMode(NORMAL);
+        } else {
+            beginShape();
+            texture(this.side_up_paint.buffer);
+        }
         vertex(0, 0, 0, 0, 0);
         vertex(this.width, 0, 0, 1, 0);
-        vertex(this.width, 0, this.depth, 1, 1);
-        vertex(0, 0, this.depth, 0, 1);
+        vertex(this.width, 0, this.depth_current, 1, 1);
+        vertex(0, 0, this.depth_current, 0, 1);
         endShape();
         // }
         pop();
@@ -110,29 +123,41 @@ class Box {
         // // side left
         push();
         translate(this.x, this.y, this.z);
-        beginShape();
-        // image(this.texture_side_left);
-        // texture(this.texture_side_left);
-        texture(this.side_left_paint.buffer);
+        if (this.boxes_emerged == false) {
+            beginShape(CLOSE);
+            noFill();
+            strokeWeight(4);
+            stroke(INSIDE_COLOR);
+            textureMode(NORMAL);
+        } else {
+            beginShape();
+            texture(this.side_left_paint.buffer);
+        }
         textureMode(NORMAL);
-        vertex(0, this.height, this.depth, 0, 0);
+        vertex(0, this.height, this.depth_current, 0, 0);
         vertex(0, this.height, 0, 1, 0);
         vertex(0, 0, 0, 1, 1);
-        vertex(0, 0, this.depth, 0, 1);
+        vertex(0, 0, this.depth_current, 0, 1);
         endShape();
         pop();
 
         // // side down
         push();
         translate(this.x, this.y, this.z);
-        beginShape();
-        // image(this.texture_side_down);
-        // texture(this.texture_side_down);
-        texture(this.side_down_paint.buffer);
+        if (this.boxes_emerged == false) {
+            beginShape(CLOSE);
+            noFill();
+            strokeWeight(4);
+            stroke(INSIDE_COLOR);
+            textureMode(NORMAL);
+        } else {
+            beginShape();
+            texture(this.side_down_paint.buffer);
+        }
         textureMode(NORMAL);
         vertex(this.width, this.height, 0, 0, 0);
-        vertex(this.width, this.height, this.depth, 1, 0);
-        vertex(0, this.height, this.depth, 1, 1);
+        vertex(this.width, this.height, this.depth_current, 1, 0);
+        vertex(0, this.height, this.depth_current, 1, 1);
         vertex(0, this.height, 0, 0, 1);
         endShape()
         pop();
@@ -140,15 +165,21 @@ class Box {
         // // side right
         push();
         translate(this.x, this.y, this.z);
-        beginShape();
-        // image(this.texture_side_right);
-        // texture(this.texture_side_right);
-        texture(this.side_right_paint.buffer);
+        if (this.boxes_emerged == false) {
+            beginShape(CLOSE);
+            noFill();
+            strokeWeight(4);
+            stroke(INSIDE_COLOR);
+            textureMode(NORMAL);
+        } else {
+            beginShape();
+            texture(this.side_right_paint.buffer);
+        }
         textureMode(NORMAL);
 
         vertex(this.width, this.height, 0, 0, 0);
-        vertex(this.width, this.height, this.depth, 1, 0);
-        vertex(this.width, 0, this.depth, 1, 1);
+        vertex(this.width, this.height, this.depth_current, 1, 0);
+        vertex(this.width, 0, this.depth_current, 1, 1);
         vertex(this.width, 0, 0, 0, 1);
         endShape()
         pop();
@@ -158,14 +189,13 @@ class Box {
             push();
             translate(this.x, this.y, this.z);
 
-            // texture(this.texture_top);
             texture(this.top_paint.buffer);
             textureMode(NORMAL);
             beginShape();
-            vertex(0, 0, this.depth, 0, 0);
-            vertex(this.width, 0, this.depth, 1, 0);
-            vertex(this.width, this.height, this.depth, 1, 1);
-            vertex(0, this.height, this.depth, 0, 1);
+            vertex(0, 0, this.depth_current, 0, 0);
+            vertex(this.width, 0, this.depth_current, 1, 0);
+            vertex(this.width, this.height, this.depth_current, 1, 1);
+            vertex(0, this.height, this.depth_current, 0, 1);
 
             endShape();
             pop();
@@ -190,4 +220,5 @@ class Box {
 
 
     }
+
 }
