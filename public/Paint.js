@@ -35,8 +35,8 @@ class Paint {
 
     create_dotty() {
         this.dotty = createGraphics(this.width, this.height);
-        let loop_count = 500;
-        let size_point = 2;
+        let loop_count = constrain(this.area / 250, 50, 800)
+        let size_point = 1;
 
         this.dotty.push();
         this.dotty.noStroke();
@@ -56,7 +56,7 @@ class Paint {
 
         // for area of 20000 use first layer 20 loops and second one 80.
         this.loop_1 = constrain(this.area / 1000, 100, 800)
-        this.loop_2 = constrain(this.area / 250, 50, 230)
+        this.loop_2 = constrain(this.area / 250, 50, 400)
 
         this.paint_layer(this.loop_1, 3, 5);
         this.paint_layer(this.loop_2, 1, 10);

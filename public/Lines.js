@@ -7,7 +7,7 @@ class Line {
         this.limit_x = limit_x;
         this.limit_y = limit_y;
         this.history = [];
-        this.line_color = distortColor(color(STROKE_COLOR), STROKE_NOISE);
+        this.line_color = distortColor(color(BACKGROUND_COLOR), STROKE_NOISE);
         // this.line_color_second = color("black");
         // this.line_color = distortColor(color(STROKE_COLOR), STROKE_NOISE);
         // this.line_color_second = distortColor(color(STROKE_COLOR), STROKE_NOISE_2);

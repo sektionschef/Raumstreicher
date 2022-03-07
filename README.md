@@ -3,6 +3,7 @@
 * mehrere Farben inside outside
 * resize works
 * move camera in arc
+* wachsanimation
 
 * ein paar wände nicht
 

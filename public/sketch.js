@@ -18,7 +18,7 @@ let grid;
 COUNT_OF_POINTS_X = Math.floor(getRandomFromInterval(5, 15));  // 1-5
 COUNT_OF_POINTS_Y = Math.floor(getRandomFromInterval(5, 15));  // 1-5
 GRID = COUNT_OF_POINTS_X + "x" + COUNT_OF_POINTS_Y;
-MAX_HEIGHT = 400;
+MAX_HEIGHT = 200;
 MIN_HEIGHT = 40;
 
 MINIMIMUM_DISTANCE = CANVAS_WIDTH / 20;
@@ -31,9 +31,93 @@ DISTANCE_BETWEEN_LINES = 30;
 logging.info("FXHASH: " + fxhash);
 logging.info("Grid: " + GRID);
 
-BACKGROUND_COLOR = "#273043";  // "#f5f5f5";
-TOP_COLOR = "#EFF6EE";
-INSIDE_COLOR = "#9197AE";
+let PALETTES = [
+  {
+    name: "Mel Brooks",
+    top_color: "#EFF6EE",
+    inside_color: "#9197AE",
+    background_color: "#273043"
+  },
+  {
+    name: "Ukraine",
+    top_color: "#ffd700",
+    inside_color: "#0057b7",
+    background_color: "#000000"
+  },
+  {
+    name: "bobbycorn",
+    top_color: "#F5F5F5",
+    inside_color: "#087E8B",
+    background_color: "#3C3C3C"
+  },
+  {
+    name: "maypole",
+    top_color: "#EDF7F6",
+    inside_color: "#F19953",
+    background_color: "#2660A4"
+  },
+  {
+    name: "manfred bauer",
+    top_color: "#FFD899",
+    inside_color: "#20A39E",
+    background_color: "#EF5B5B"
+  },
+  {
+    name: "butterfred",
+    top_color: "#B8F2E6",
+    inside_color: "#FAF3DD",
+    background_color: "#FFA69E"
+  },
+  {
+    name: "gianni",
+    top_color: "#EAF0CE",
+    inside_color: "#C0C5C1",
+    background_color: "#7D8491"
+  },
+  {
+    name: "Ian",
+    top_color: "#071108",
+    inside_color: "#364652",
+    background_color: "#BFB1C1"
+  },
+  {
+    name: "Ginger",
+    top_color: "#41EAD4",
+    inside_color: "#011627",
+    background_color: "#F71735",
+  },
+  {
+    name: "Simone Minestrone",
+    top_color: "#62B6CB",
+    inside_color: "#1B4965",
+    background_color: "#BEE9E8",
+  },
+  {
+    name: "Hunger",
+    top_color: "#FF9FE5",
+    inside_color: "#2B50AA",
+    background_color: "#272727",
+  },
+  {
+    name: "Shakespeare",
+    top_color: "#A93F55",
+    inside_color: "#F2545B",
+    background_color: "#19323C",
+  },
+  {
+    name: "Ladies night",
+    top_color: "#0075F2",
+    inside_color: "#FF5C7A",
+    background_color: "#D5CAC3",
+  },
+]
+
+
+let CHOSEN_PALETTE = getRandomFromList(PALETTES);
+
+TOP_COLOR = CHOSEN_PALETTE.top_color;
+INSIDE_COLOR = CHOSEN_PALETTE.inside_color;
+BACKGROUND_COLOR = CHOSEN_PALETTE.background_color;  // "#f5f5f5";
 
 
 // STUPID
@@ -66,14 +150,11 @@ function setup() {
 
 
 function draw() {
-  // camera(0, 0, (height) / tan(PI / 6), 0, 0, 0, 0, 1, 0);
-  camera(0, 0, (height / 1.1) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
-
   translate(-width / 2, -height / 2, 0);
 
-  // camera(mouseX, mouseY, width * 1.8, width / 2, height / 2, 0, 0, 1, 0);
+  // camera(width / 2, height / 2, (height / 0.7) / SCALING_FACTOR, width / 2, height / 2, 0, 0, 1, 0);
 
-  // camera(mouseX, mouseY, (height / 1.1) / tan(PI / 6), width / 2, height / 2, 0, 0, 1, 0);
+  camera(mouseX, mouseY, (height / 0.65), width / 2, height / 2, 0, 0, 1, 0);
 
   ambientLight(255, 255, 255);
   // directionalLight(255, 255, 255, 0.25, 0.25, -1);
@@ -98,5 +179,12 @@ function draw() {
   // painty.show();
 
   // image(painty.buffer, 0, 0)
+
+
+  // push();
+  // translate(width / 2, height / 2, 300);
+  // fill("red");
+  // sphere(40);
+  // pop();
 }
 
