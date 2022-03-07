@@ -90,7 +90,7 @@ class Box {
         // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
         push();
-        translate(this.x, this.y, 0);
+        translate(this.x, this.y, this.z);
         // if (this.side_up_lines.all_lines_complete == true) {
         // side up
         beginShape();
@@ -109,7 +109,7 @@ class Box {
 
         // // side left
         push();
-        translate(this.x, this.y, 0);
+        translate(this.x, this.y, this.z);
         beginShape();
         // image(this.texture_side_left);
         // texture(this.texture_side_left);
@@ -124,7 +124,7 @@ class Box {
 
         // // side down
         push();
-        translate(this.x, this.y, 0);
+        translate(this.x, this.y, this.z);
         beginShape();
         // image(this.texture_side_down);
         // texture(this.texture_side_down);
@@ -139,7 +139,7 @@ class Box {
 
         // // side right
         push();
-        translate(this.x, this.y, 0);
+        translate(this.x, this.y, this.z);
         beginShape();
         // image(this.texture_side_right);
         // texture(this.texture_side_right);
@@ -156,7 +156,7 @@ class Box {
         // side top
         if (this.top == true) {
             push();
-            translate(this.x, this.y, 0);
+            translate(this.x, this.y, this.z);
 
             // texture(this.texture_top);
             texture(this.top_paint.buffer);
@@ -174,7 +174,7 @@ class Box {
         // // side bottom
         if (this.bottom == true) {
             push();
-            translate(this.x, this.y, 0);
+            translate(this.x, this.y, this.z);
             // image(this.texture_bottom);
             // texture(this.texture_bottom);
             texture(this.bottom_paint.buffer);

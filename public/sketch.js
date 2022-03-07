@@ -19,6 +19,7 @@ COUNT_OF_POINTS_X = Math.floor(getRandomFromInterval(5, 15));  // 1-5
 COUNT_OF_POINTS_Y = Math.floor(getRandomFromInterval(5, 15));  // 1-5
 GRID = COUNT_OF_POINTS_X + "x" + COUNT_OF_POINTS_Y;
 MAX_HEIGHT = 400;
+MIN_HEIGHT = 40;
 
 MINIMIMUM_DISTANCE = CANVAS_WIDTH / 20;
 STROKE_SIZE = 1;
@@ -54,7 +55,7 @@ function setup() {
   logging.setLevel(SWITCH_LOGGING_LEVEL);
 
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
-  grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT);
+  grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT, MIN_HEIGHT);
 
   // backback = new Background(BACKGROUND_COLOR, BACKGROUND_NOISE);
 
@@ -66,9 +67,12 @@ function setup() {
 
 function draw() {
   // camera(0, 0, (height) / tan(PI / 6), 0, 0, 0, 0, 1, 0);
-  // camera(0, 0, (height / 2) / tan(PI / 6), 0, 0, 0, 0, 1, 0);
+  camera(0, 0, (height / 1.1) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
+
   translate(-width / 2, -height / 2, 0);
-  camera(mouseX, mouseY, width * 1.5, width / 2, height / 2, 0, 0, 1, 0);
+
+  // camera(mouseX, mouseY, width * 1.8, width / 2, height / 2, 0, 0, 1, 0);
+
   // camera(mouseX, mouseY, (height / 1.1) / tan(PI / 6), width / 2, height / 2, 0, 0, 1, 0);
 
   ambientLight(255, 255, 255);

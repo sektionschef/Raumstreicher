@@ -30,34 +30,7 @@ class Paint {
         // this.buffer.rect(this.border, this.border, width, height);
         // this.buffer.pop();
 
-        this.create_grainy_spots();
         this.create_dotty();
-    }
-
-    create_grainy_spots() {
-        this.grainy = createGraphics(this.width, this.height);
-        let loop_count = 200;
-        let size_point = 2;
-
-        this.grainy.push()
-        this.grainy.noStroke();
-        this.grainy.strokeWeight(size_point);
-        let x = getRandomFromInterval(this.grainy.width, this.grainy.height);
-        let y = getRandomFromInterval(this.grainy.width, this.grainy.height);
-        for (var i = 0; i < loop_count; i++) {
-            this.grainy.stroke(brightenColor(color(INSIDE_COLOR), 20));
-            // this.grainy.point(x, y);
-            this.grainy.point(x + getRandomFromInterval(-(this.grainy.width / 2), (this.grainy.width / 5)), y + getRandomFromInterval(-(this.grainy.width / 2), (this.grainy.width / 2)));
-            // if (fxrand() > 0.4) {
-            //     this.grainy.point(x + getRandomFromInterval(-(this.grainy.width / 12), (this.grainy.width / 12)), y + getRandomFromInterval(-(this.grainy.width / 10), (this.grainy.width / 10)));
-            // } else if (fxrand() > 0.7) {
-            //     this.grainy.point(x + getRandomFromInterval(-(this.grainy.width / 6), (this.grainy.width / 6)), y + getRandomFromInterval(-(this.grainy.width / 9), (this.grainy.width / 9)));
-            // } else {
-            //     this.grainy.point(x + getRandomFromInterval(-(this.grainy.width / 5), (this.grainy.width / 5)), y + getRandomFromInterval(-(this.grainy.width / 7), (this.grainy.width / 7)));
-            // }
-        }
-
-        this.grainy.pop()
     }
 
     create_dotty() {
@@ -67,9 +40,12 @@ class Paint {
 
         this.dotty.push();
         this.dotty.noStroke();
-        this.grainy.strokeWeight(size_point);
+        this.dotty.strokeWeight(size_point);
         for (var i = 0; i < loop_count; i++) {
             this.dotty.stroke(brightenColor(distortColor(color(this.color_master), 1), 50));
+            this.dotty.point(getRandomFromInterval(0, this.dotty.width), getRandomFromInterval(0, this.dotty.height));
+
+            this.dotty.stroke(brightenColor(color(INSIDE_COLOR), 20));
             this.dotty.point(getRandomFromInterval(0, this.dotty.width), getRandomFromInterval(0, this.dotty.height));
         }
 
@@ -129,7 +105,6 @@ class Paint {
             this.buffer.endShape();
         }
 
-        this.buffer.image(this.grainy, 0, 0, this.grainy.width, this.grainy.height);
-        this.buffer.image(this.dotty, 0, 0, this.dotty.width, this.dotty.height);
+        this.buffer.image(this.dotty, this.border, this.border, this.dotty.width, this.dotty.height);
     }
 }

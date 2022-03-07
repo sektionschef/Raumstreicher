@@ -1,10 +1,11 @@
 class Grid {
-    constructor(count_of_points_x, count_of_points_y, minimum_distance, pairing_count, max_height) {
+    constructor(count_of_points_x, count_of_points_y, minimum_distance, pairing_count, max_height, min_height) {
         this.count_of_points_x = count_of_points_x;
         this.count_of_points_y = count_of_points_y;
         this.minimum_distance = minimum_distance;
         this.pairing_count = pairing_count;
         this.max_height = max_height;
+        this.min_height = min_height;
 
         this.width_points = [0];
         this.height_points = [0];
@@ -282,13 +283,10 @@ class Grid {
         let z;
 
         for (let box_real of this.real_boxes) {
-            height = getRandomFromInterval(40, this.max_height);
-            z = height - getRandomFromInterval(0, height);
+            height = getRandomFromInterval(this.min_height, this.max_height);
+            z = height - getRandomFromInterval(0, (height - this.min_height));
             open = getRandomFromList([true, false]);
             box_real.body = new Box((box_real.c.x - box_real.a.x), (box_real.c.y - box_real.a.y), height, box_real.a.x, box_real.a.y, z, open, !open);
-            // } else 
-            // logging.debug("Box is skipped. creating a hole.")
-            // }
         }
     }
 
