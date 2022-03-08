@@ -131,6 +131,8 @@ BACKGROUND_NOISE = getRandomFromInterval(5, 20);
 
 let dotty;
 
+let camera_start_x;
+
 function preload() {
   font = loadFont('SourceSansPro-Regular.otf');
 }
@@ -145,15 +147,30 @@ function setup() {
 
   // painty = new Paint(width, height, TOP_COLOR);
 
+  camera_start_x = - width;
+  camera_start_y = - height;
+
+  camera_stop_x = 0;
+  camera_stop_y = 0;
+
+
   resize_canvas();
 }
 
 
 function draw() {
-  // translate(-width / 2, -height / 2, 0);
 
-  // camera(width / 2, height / 2, (height / 0.65) / SCALING_FACTOR, width / 2, height / 2, 0, 0, 1, 0);
-  // camera(width * 2, height / 2, (height / 0.65) / SCALING_FACTOR, width / 2, height / 2, 0, 0, 1, 0);
+  // camera(width / 2, height / 2, (height / 0.65) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
+  // camera(width * 2, height / 2, (height / 0.65) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
+
+
+  camera(camera_start_x / SCALING_FACTOR, camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
+
+  if (camera_start_x <= camera_stop_x) {
+    camera_start_x += 4;
+    camera_start_y += 4;
+  }
+
 
   // camera(mouseX, mouseY, (height / 0.65), width / 2, height / 2, 0, 0, 1, 0);
   orbitControl(1, 1, 0.1);
