@@ -3,9 +3,10 @@
 * wachsanimation
 * create center
 * resize works
-* move camera in arc
+* move camera journey
+* different brushes
 
-* ein paar wände nicht
+
 
 features:
 * palette

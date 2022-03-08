@@ -18,6 +18,8 @@ class Paint {
         this.counter_max = 70;
         this.counter = 0;
 
+        this.area_fully_painted = false;
+
 
         // create background
         // this.buffer.background(this.color_master);
@@ -64,6 +66,10 @@ class Paint {
         if (typeof (on_top_layer) != "undefined") {
             this.buffer.image(on_top_layer, 0, 0, this.buffer.width, this.buffer.height);
         }
+
+        if (this.counter == this.counter_max) {
+            this.area_fully_painted = true;
+        }
     }
 
     paint_layer(brush_loops, stroke_size, color_noise) {
@@ -71,7 +77,7 @@ class Paint {
         this.stroke_size = stroke_size;
         this.color_noise = color_noise;
 
-        if (this.counter < this.counter_max) {
+        if (this.counter <= this.counter_max) {
             this.color = brightenColor(distortColor(color(this.color_master), this.color_noise), 30);
 
             this.counter += 1;
@@ -106,5 +112,7 @@ class Paint {
         }
 
         this.buffer.image(this.dotty, this.border, this.border, this.dotty.width, this.dotty.height);
+
+
     }
 }

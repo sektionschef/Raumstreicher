@@ -4,6 +4,8 @@ class Box {
         this.height = height;
         this.depth = depth;
 
+        // first top paint
+
         this.x = x;
         this.y = y;
         this.z = z;
@@ -20,36 +22,35 @@ class Box {
         this.texture_top = createGraphics(this.width, this.height);
         this.texture_bottom = createGraphics(this.width, this.height);
 
+        this.top_bottom_fully_painted = false;
 
-        if (logging.getLevel() <= 1) {
-        } else {
-            let opacity_val = "ff";
-            // let opacity_val = "9e";
-            // this.texture_side_up.background(color(INSIDE_COLOR + opacity_val));
-            // this.texture_side_down.background(color(INSIDE_COLOR + opacity_val));
-            // this.texture_side_left.background(color(INSIDE_COLOR + opacity_val));
-            // this.texture_side_right.background(color(INSIDE_COLOR + opacity_val));
+        let opacity_val = "ff";
+        // let opacity_val = "9e";
+        // this.texture_side_up.background(color(INSIDE_COLOR + opacity_val));
+        // this.texture_side_down.background(color(INSIDE_COLOR + opacity_val));
+        // this.texture_side_left.background(color(INSIDE_COLOR + opacity_val));
+        // this.texture_side_right.background(color(INSIDE_COLOR + opacity_val));
 
-            // this.texture_top.background(color(TOP_COLOR + opacity_val));
-            // this.texture_bottom.background(color(TOP_COLOR + opacity_val));
+        // this.texture_top.background(color(TOP_COLOR + opacity_val));
+        // this.texture_bottom.background(color(TOP_COLOR + opacity_val));
 
-            this.side_up_lines = new Lines(this.texture_side_up, DISTANCE_BETWEEN_LINES)
-            this.side_down_lines = new Lines(this.texture_side_down, DISTANCE_BETWEEN_LINES)
-            this.side_left_lines = new Lines(this.texture_side_left, DISTANCE_BETWEEN_LINES)
-            this.side_right_lines = new Lines(this.texture_side_right, DISTANCE_BETWEEN_LINES)
+        this.side_up_lines = new Lines(this.texture_side_up, DISTANCE_BETWEEN_LINES)
+        this.side_down_lines = new Lines(this.texture_side_down, DISTANCE_BETWEEN_LINES)
+        this.side_left_lines = new Lines(this.texture_side_left, DISTANCE_BETWEEN_LINES)
+        this.side_right_lines = new Lines(this.texture_side_right, DISTANCE_BETWEEN_LINES)
 
-            this.top_lines = new Lines(this.texture_top, DISTANCE_BETWEEN_LINES)
-            this.bottom_lines = new Lines(this.texture_bottom, DISTANCE_BETWEEN_LINES)
+        this.top_lines = new Lines(this.texture_top, DISTANCE_BETWEEN_LINES)
+        this.bottom_lines = new Lines(this.texture_bottom, DISTANCE_BETWEEN_LINES)
 
 
-            this.side_up_paint = new Paint(this.texture_side_up.width, this.texture_side_up.height, INSIDE_COLOR);
-            this.side_down_paint = new Paint(this.texture_side_down.width, this.texture_side_down.height, INSIDE_COLOR);
-            this.side_left_paint = new Paint(this.texture_side_left.width, this.texture_side_left.height, INSIDE_COLOR);
-            this.side_right_paint = new Paint(this.texture_side_right.width, this.texture_side_right.height, INSIDE_COLOR);
+        this.side_up_paint = new Paint(this.texture_side_up.width, this.texture_side_up.height, INSIDE_COLOR);
+        this.side_down_paint = new Paint(this.texture_side_down.width, this.texture_side_down.height, INSIDE_COLOR);
+        this.side_left_paint = new Paint(this.texture_side_left.width, this.texture_side_left.height, INSIDE_COLOR);
+        this.side_right_paint = new Paint(this.texture_side_right.width, this.texture_side_right.height, INSIDE_COLOR);
 
-            this.top_paint = new Paint(this.texture_top.width, this.texture_top.height, TOP_COLOR);
-            this.bottom_paint = new Paint(this.texture_bottom.width, this.texture_bottom.height, TOP_COLOR);
-        }
+        this.top_paint = new Paint(this.texture_top.width, this.texture_top.height, TOP_COLOR);
+        this.bottom_paint = new Paint(this.texture_bottom.width, this.texture_bottom.height, TOP_COLOR);
+
     }
 
     draw_lines() {
@@ -73,27 +74,34 @@ class Box {
     }
 
     show() {
-        if (this.depth_current <= this.depth) {
-            this.depth_current += 1;
-        } else {
-            this.boxes_emerged = true;
+        if (this.top_bottom_fully_painted == true) {
+            if (this.depth_current <= this.depth) {
+                this.depth_current += 1;
+            } else {
+                this.boxes_emerged = true;
+            }
         }
 
-        if (logging.getLevel() > 1) {
-            this.draw_lines();
+        this.draw_lines();
 
-            if (this.top == true) {
-                this.top_paint.show(this.texture_top);
-            }
-            if (this.bottom == true) {
-                this.bottom_paint.show(this.texture_bottom);
-            }
+        if (this.top == true) {
+            this.top_paint.show(this.texture_top);
+        }
+        if (this.bottom == true) {
+            this.bottom_paint.show(this.texture_bottom);
+        }
 
+        if (this.top_paint.area_fully_painted == true | this.bottom_paint.area_fully_painted == true) {
+            this.top_bottom_fully_painted = true;
+        }
+
+        if (this.top_bottom_fully_painted == true) {
             this.side_up_paint.show(this.texture_side_up);
             this.side_down_paint.show(this.texture_side_down);
             this.side_left_paint.show(this.texture_side_left);
             this.side_right_paint.show(this.texture_side_right);
         }
+
 
         // image(paint.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 
