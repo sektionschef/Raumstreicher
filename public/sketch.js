@@ -156,7 +156,7 @@ function draw() {
   // camera(width * 2, height / 2, (height / 0.65) / SCALING_FACTOR, width / 2, height / 2, 0, 0, 1, 0);
 
   // camera(mouseX, mouseY, (height / 0.65), width / 2, height / 2, 0, 0, 1, 0);
-  orbitControl();
+  orbitControl(1, 1, 0.1);
 
   ambientLight(255, 255, 255);
   // directionalLight(255, 255, 255, 0.25, 0.25, -1);

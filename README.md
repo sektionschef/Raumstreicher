@@ -1,7 +1,7 @@
 # Raum
 
 * wachsanimation - alle flächen angemalt
-* create center
+* orbit explain in text + keypresses
 * resize works
 * move camera journey
 * different brushes
