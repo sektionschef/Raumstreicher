@@ -67,6 +67,8 @@ function resize_canvas() {
     // line_canvas_resized.image(line_canvas, 0, 0, line_canvas_resized.width, line_canvas_resized.height);
     // line_canvas = line_canvas_resized;
 
+
     resizeCanvas(CANVAS_WIDTH * SCALING_FACTOR, CANVAS_HEIGHT * SCALING_FACTOR);
+    camera(camera_start_x / SCALING_FACTOR, camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
 }
 

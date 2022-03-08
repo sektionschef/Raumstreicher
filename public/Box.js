@@ -97,7 +97,8 @@ class Box {
             this.top_bottom_fully_painted = true;
         }
 
-        if (this.top_bottom_fully_painted == true) {
+        // if (this.top_bottom_fully_painted == true) {
+        if (this.boxes_emerged == true) {
             this.side_up_paint.show(this.texture_side_up);
             this.side_down_paint.show(this.texture_side_down);
             this.side_left_paint.show(this.texture_side_left);
