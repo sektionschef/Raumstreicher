@@ -1,9 +1,11 @@
 # Raum
 
-* wachsanimation - alle flächen angemalt
+* seitenpanels erst malen
+* wenn alles fertig die lines
+* move camera journey
+
 * orbit explain in text + keypresses
 * resize works
-* move camera journey
 * different brushes
 
 

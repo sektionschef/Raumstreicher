@@ -164,9 +164,9 @@ function draw() {
   // camera(width * 2, height / 2, (height / 0.65) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
 
 
-  camera(camera_start_x / SCALING_FACTOR, camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
 
   if (camera_start_x <= camera_stop_x) {
+    camera(camera_start_x / SCALING_FACTOR, camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
     camera_start_x += 4;
     camera_start_y += 4;
   }
