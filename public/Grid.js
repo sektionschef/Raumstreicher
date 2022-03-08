@@ -7,8 +7,8 @@ class Grid {
         this.max_height = max_height;
         this.min_height = min_height;
 
-        this.width_points = [0];
-        this.height_points = [0];
+        this.width_points = [-width / 2];  // 0 orbit
+        this.height_points = [-height / 2]; // 0 orbit
 
         logging.debug(this.count_of_points_x + " random points on x axis.");
         logging.debug(this.count_of_points_y + " random points on y axis.");
@@ -52,15 +52,15 @@ class Grid {
     create_coordinates() {
 
         for (let i = 0; i < this.count_of_points_x; i++) {
-            this.width_points.push(Math.floor(getRandomFromInterval(0, (width - this.minimum_distance))));
+            this.width_points.push(Math.floor(getRandomFromInterval(-width / 2, (width / 2 - this.minimum_distance))));
         }
         for (let i = 0; i < this.count_of_points_y; i++) {
-            this.height_points.push(Math.floor(getRandomFromInterval(0, (height - this.minimum_distance))));
+            this.height_points.push(Math.floor(getRandomFromInterval(-height / 2, (height / - this.minimum_distance))));
         }
 
         // add width and height
-        this.width_points.push(width);
-        this.height_points.push(height);
+        this.width_points.push(width / 2);
+        this.height_points.push(height / 2);
 
         // simple sort
         this.width_points.sort(function (a, b) {
@@ -73,7 +73,7 @@ class Grid {
         // remove violating minimum distance
         for (var i = this.width_points.length - 1; i >= 0; i--) {
             if ((this.width_points[(i)] - this.width_points[i - 1]) < this.minimum_distance) {
-                if (this.width_points[i] != width) {  // do not remove the width value
+                if (this.width_points[i] != width / 2) {  // do not remove the width value
                     this.width_points.splice(i, 1);
                 }
             }
@@ -81,7 +81,7 @@ class Grid {
 
         for (var i = this.height_points.length - 1; i >= 0; i--) {
             if ((this.height_points[(i)] - this.height_points[i - 1]) < this.minimum_distance) {
-                if (this.height_points[i] != height) {
+                if (this.height_points[i] != height / 2) {
                     this.height_points.splice(i, 1);
                 }
             }

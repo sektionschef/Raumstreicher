@@ -150,13 +150,13 @@ function setup() {
 
 
 function draw() {
-  translate(-width / 2, -height / 2, 0);
+  // translate(-width / 2, -height / 2, 0);
 
   // camera(width / 2, height / 2, (height / 0.65) / SCALING_FACTOR, width / 2, height / 2, 0, 0, 1, 0);
   // camera(width * 2, height / 2, (height / 0.65) / SCALING_FACTOR, width / 2, height / 2, 0, 0, 1, 0);
 
-  camera(mouseX, mouseY, (height / 0.65), width / 2, height / 2, 0, 0, 1, 0);
-  // orbitControl();
+  // camera(mouseX, mouseY, (height / 0.65), width / 2, height / 2, 0, 0, 1, 0);
+  orbitControl();
 
   ambientLight(255, 255, 255);
   // directionalLight(255, 255, 255, 0.25, 0.25, -1);
