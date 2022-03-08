@@ -1,6 +1,6 @@
 # Raum
 
-* wachsanimation
+* wachsanimation - alle flächen angemalt
 * create center
 * resize works
 * move camera journey

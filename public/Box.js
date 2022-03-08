@@ -9,7 +9,7 @@ class Box {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.depth_current = this.z;
+        this.depth_current = 0;
         this.boxes_emerged = false;
 
         this.bottom = bottom;
@@ -82,7 +82,9 @@ class Box {
             }
         }
 
-        this.draw_lines();
+        if (this.boxes_emerged == true) {
+            this.draw_lines();
+        }
 
         if (this.top == true) {
             this.top_paint.show(this.texture_top);
