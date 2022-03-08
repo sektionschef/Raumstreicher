@@ -67,8 +67,22 @@ function resize_canvas() {
     // line_canvas_resized.image(line_canvas, 0, 0, line_canvas_resized.width, line_canvas_resized.height);
     // line_canvas = line_canvas_resized;
 
-
     resizeCanvas(CANVAS_WIDTH * SCALING_FACTOR, CANVAS_HEIGHT * SCALING_FACTOR);
-    camera(camera_start_x / SCALING_FACTOR, camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
+    reset_camera();
 }
 
+function reset_camera() {
+    camera(...CAMERA_DEFAULT);
+}
+
+function keyTyped() {
+    if (key === 's') {
+        noLoop();
+        saveCanvas(canvas, 'snapshot', 'png');
+        loop();
+    } else if (key === "r") {
+        reset_camera()
+    } else if (key === "c") {
+        camera(0, 0, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
+    }
+}

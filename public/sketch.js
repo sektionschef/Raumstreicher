@@ -9,6 +9,8 @@ const SWITCH_LOGGING_LEVEL = "info";
 const CANVAS_WIDTH = 1080;
 const CANVAS_HEIGHT = CANVAS_WIDTH;
 
+let CAMERA_DEFAULT;
+
 let SCALING_FACTOR = 1;
 let rescaling_width;
 let rescaling_height;
@@ -112,8 +114,36 @@ let PALETTES = [
   },
 ]
 
-
 let CHOSEN_PALETTE = getRandomFromList(PALETTES);
+
+let CAMERA_FLIGHTS = [
+  {
+    name: "top/left -> center",
+    camera_start_x: - CANVAS_WIDTH / 1.5,
+    camera_start_y: - CANVAS_HEIGHT / 1.5,
+
+    camera_stop_x: 0,
+    camera_stop_y: 0,
+  },
+  {
+    name: "left -> width",
+    camera_start_x: - CANVAS_WIDTH,
+    camera_start_y: 0,
+
+    camera_stop_x: CANVAS_WIDTH / 2,
+    camera_stop_y: 0,
+  },
+  {
+    name: "right -> width",
+    camera_start_x: CANVAS_WIDTH,
+    camera_start_y: 0,
+
+    camera_stop_x: - CANVAS_WIDTH / 2,
+    camera_stop_y: 0,
+  },
+]
+
+let CHOSEN_CAMERA_FLIGHT = getRandomFromList(CAMERA_FLIGHTS);
 
 TOP_COLOR = CHOSEN_PALETTE.top_color;
 INSIDE_COLOR = CHOSEN_PALETTE.inside_color;
@@ -147,12 +177,7 @@ function setup() {
 
   // painty = new Paint(width, height, TOP_COLOR);
 
-  camera_start_x = - width;
-  camera_start_y = - height;
-
-  camera_stop_x = 0;
-  camera_stop_y = 0;
-
+  CAMERA_DEFAULT = [CHOSEN_CAMERA_FLIGHT.camera_start_x / SCALING_FACTOR, CHOSEN_CAMERA_FLIGHT.camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0];
 
   resize_canvas();
 }
@@ -163,12 +188,20 @@ function draw() {
   // camera(width / 2, height / 2, (height / 0.65) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
   // camera(width * 2, height / 2, (height / 0.65) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
 
+  CAMERA_DEFAULT = [CHOSEN_CAMERA_FLIGHT.camera_start_x / SCALING_FACTOR, CHOSEN_CAMERA_FLIGHT.camera_start_y / SCALING_FACTOR, height * 1.35 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0];
 
-
-  if (camera_start_x <= camera_stop_x) {
-    camera(camera_start_x / SCALING_FACTOR, camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
-    camera_start_x += 4;
-    camera_start_y += 4;
+  if (CHOSEN_CAMERA_FLIGHT.camera_start_x != CHOSEN_CAMERA_FLIGHT.camera_stop_x | CHOSEN_CAMERA_FLIGHT.camera_start_y != CHOSEN_CAMERA_FLIGHT.camera_stop_y) {
+    if (CHOSEN_CAMERA_FLIGHT.camera_start_x <= CHOSEN_CAMERA_FLIGHT.camera_stop_x) {
+      CHOSEN_CAMERA_FLIGHT.camera_start_x += CANVAS_WIDTH / 216;
+    } else {
+      CHOSEN_CAMERA_FLIGHT.camera_start_x -= CANVAS_WIDTH / 216;
+    }
+    if (CHOSEN_CAMERA_FLIGHT.camera_start_y <= CHOSEN_CAMERA_FLIGHT.camera_stop_y) {
+      CHOSEN_CAMERA_FLIGHT.camera_start_y += CANVAS_WIDTH / 216;
+    } else {
+      CHOSEN_CAMERA_FLIGHT.camera_start_y -= CANVAS_WIDTH / 216;
+    }
+    camera(...CAMERA_DEFAULT);
   }
 
 

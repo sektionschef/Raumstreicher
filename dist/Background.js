@@ -1,0 +1,1 @@
+class Background{constructor(t,e){this.buffer=createGraphics(width,height);for(let t=0;t<3e3;t++){let t=getRandomFromInterval(0,this.buffer.width),e=getRandomFromInterval(0,this.buffer.height);this.buffer.strokeWeight(getRandomFromInterval(1,3)),this.buffer.stroke(getRandomFromInterval(150,250)),this.buffer.point(t,e)}}}
