@@ -60,7 +60,7 @@ class Paint {
         this.loop_1 = constrain(this.area / 1000, 100, 800)
         this.loop_2 = constrain(this.area / 250, 50, 400)
 
-        this.paint_layer(this.loop_1, 3, 5);
+        this.paint_layer(this.loop_1, 3, 5);  // 3, 5, 8
         this.paint_layer(this.loop_2, 1, 10);
 
         if (typeof (on_top_layer) != "undefined") {
@@ -89,7 +89,7 @@ class Paint {
             let begin_x = getRandomFromInterval(this.border, this.width + this.border)
             let begin_y = getRandomFromInterval(this.border, this.height + this.border)
 
-
+            // this.buffer.curveTightness(0);
             this.buffer.beginShape();
             this.buffer.curveVertex(begin_x, begin_y);
             this.buffer.curveVertex(begin_x, begin_y);

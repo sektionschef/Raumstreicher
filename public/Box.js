@@ -23,6 +23,7 @@ class Box {
         this.texture_bottom = createGraphics(this.width, this.height);
 
         this.top_bottom_fully_painted = false;
+        this.box_complete = false;
 
         let opacity_val = "ff";
         // let opacity_val = "9e";
@@ -61,6 +62,8 @@ class Box {
 
         if (this.top == true) {
             this.top_lines.draw_lines();
+        } else {
+            this.top_lines.all_lines_complete = true;
         }
         this.bottom_lines.draw_lines();
 
@@ -85,6 +88,25 @@ class Box {
         if (this.boxes_emerged == true) {
             this.draw_lines();
         }
+
+        if (
+            this.box_complete == false &&
+            this.side_up_lines.all_lines_complete == true &&
+            this.side_down_lines.all_lines_complete == true &&
+            this.side_left_lines.all_lines_complete == true &&
+            this.side_right_lines.all_lines_complete == true &&
+            this.top_lines.all_lines_complete == true && // das ist er
+            this.bottom_lines.all_lines_complete == true
+        ) {
+            this.box_complete = true;
+            logging.debug("Box finished");
+        }
+        // if (this.box_complete == true) {
+        //     push();
+        //     translate(this.x, this.y, this.z);
+        //     box();
+        //     pop();
+        // }
 
         if (this.top == true) {
             this.top_paint.show(this.texture_top);
@@ -115,7 +137,7 @@ class Box {
         if (this.boxes_emerged == false) {
             beginShape(CLOSE);
             noFill();
-            strokeWeight(4);
+            strokeWeight(2);
             stroke(INSIDE_COLOR);
             textureMode(NORMAL);
         } else {
@@ -137,7 +159,7 @@ class Box {
         if (this.boxes_emerged == false) {
             beginShape(CLOSE);
             noFill();
-            strokeWeight(4);
+            strokeWeight(2);
             stroke(INSIDE_COLOR);
             textureMode(NORMAL);
         } else {
@@ -158,7 +180,7 @@ class Box {
         if (this.boxes_emerged == false) {
             beginShape(CLOSE);
             noFill();
-            strokeWeight(4);
+            strokeWeight(2);
             stroke(INSIDE_COLOR);
             textureMode(NORMAL);
         } else {
@@ -179,7 +201,7 @@ class Box {
         if (this.boxes_emerged == false) {
             beginShape(CLOSE);
             noFill();
-            strokeWeight(4);
+            strokeWeight(2);
             stroke(INSIDE_COLOR);
             textureMode(NORMAL);
         } else {

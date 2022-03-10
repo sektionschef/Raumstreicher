@@ -27,6 +27,7 @@ MINIMIMUM_DISTANCE = CANVAS_WIDTH / 20;
 STROKE_SIZE = 1;
 STROKE_DISTORT = getRandomFromInterval(0, 0.2);
 
+PREVIEW_CALLED = false;
 PAIRING_COUNT = Math.floor(getRandomFromInterval(4, 10));
 DISTANCE_BETWEEN_LINES = 30;
 
@@ -225,6 +226,14 @@ function draw() {
   // // grid.show_grid_debug();
 
   grid.show_boxes();
+  grid.check_boxes_complete();
+
+  if (grid.boxes_completely_run == true && PREVIEW_CALLED == false) {
+    logging.debug("all work is done");
+    fxpreview();
+    PREVIEW_CALLED = true;
+  }
+
 
   // image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
 

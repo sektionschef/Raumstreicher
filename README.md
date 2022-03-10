@@ -1,33 +1,38 @@
 # Raum
 
-* different brushes
+* fxpreview
 * palettes
+* launch date
 
-* orbit explain in text + keypresses
+* structure backgrounds in funktionen
+
 * resize works
 * create features
 
 stop line draw?
-clenanup?
-
-Allows movement around a 3D sketch using a mouse or trackpad. Left-clicking and dragging will rotate the camera position about the center of the sketch, right-clicking and dragging will pan the camera position without rotation, and using the mouse wheel (scrolling) will move the camera closer or further from the center of the sketch. 
-
-'c' - for centering
+general clenanup?
+wallet
 
 
 features:
 * palette
 * border size
 * perspective
+* stroke size of paint
+* curvetightness
+
+if bored
+* different brushes
 
 
-* lamp
-* camera
-* structure backgrounds in funktionen
-* adding planes
+# Shortcuts
+
+* scrolling | zoom in and zoom out 
+* left-clicking + dragging | rotate the camera
+* right-clicking + dragging | pan the camera position
+* 'c' | center the artwork
+* 'r' | reset the perspective
+* 's' | export png image
 
 
-
-Lunace lesen
-Marchi lesen
 

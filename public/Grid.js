@@ -297,17 +297,14 @@ class Grid {
     }
 
 
-    // check_boxes_complete() {
-
-    //     this.boxes_completely_run = true;
-
-    //     for (let box_real of this.real_boxes) {
-    //         box_real.lines.check_all_complete();
-    //         if (box_real.lines.all_lines_complete == false) {
-    //             this.boxes_completely_run = false;
-    //         }
-    //     }
-    // }
+    check_boxes_complete() {
+        this.boxes_completely_run = true;
+        for (let box_real of this.real_boxes) {
+            if (box_real.body.box_complete == false) {
+                this.boxes_completely_run = false;
+            }
+        }
+    }
 
     show_grid_debug() {
         let center_x;
