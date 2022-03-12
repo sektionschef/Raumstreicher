@@ -13,8 +13,8 @@
   <meta property="og:title" content="Raumstreicher">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalitility.com">
-  <meta property="og:description" content="A couple of strokes wandering through the landscapes.">
-  <meta property="og:image" content="thumbnail.png">
+  <meta property="og:description" content="Space divided in painted boxes.">
+  <!-- <meta property="og:image" content="thumbnail.png"> -->
 
   <link rel="icon" href="favicon.ico">
 
@@ -23,8 +23,6 @@
     let alphabet = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
     var fxhash = "oo" + Array(49).fill(0).map(_ => alphabet[(Math.random() * alphabet.length) | 0]).join('')
     // var fxhash = "oosViukGmmmNCJo7ZCrVmcqBUVi1JUzfZEmC8uvyRSpxstXhH1B"  // like it
-    // var fxhash = "oo33XY4Mqh1JM2eso7yg79XB3v7njzGGqdxQpQXGc8bHuNwRwjP"  // like it
-    // var fxhash = "ooR57SSSEczzmmewG9tpW6Z9cRsZzgv2XeRnbzvy1ySBbnSkAHW"  // like it
     let b58dec = str => [...str].reduce((p, c) => p * alphabet.length + alphabet.indexOf(c) | 0, 0)
     let fxhashTrunc = fxhash.slice(2)
     let regex = new RegExp(".{" + ((fxhash.length / 4) | 0) + "}", 'g')
@@ -60,7 +58,6 @@
     var logging = log.noConflict();
   </script>
 
-  <script type="text/javascript" src='Background.js' ) }}></script>
   <script type="text/javascript" src='Grid.js' ) }}></script>
   <script type="text/javascript" src='Box.js' ) }}></script>
   <script type="text/javascript" src='Lines.js' ) }}></script>

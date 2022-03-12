@@ -7,8 +7,8 @@ class Grid {
         this.max_height = max_height;
         this.min_height = min_height;
 
-        this.width_points = [-width / 2];  // 0 orbit
-        this.height_points = [-height / 2]; // 0 orbit
+        this.width_points = [-width / 2];
+        this.height_points = [-height / 2];
 
         logging.debug(this.count_of_points_x + " random points on x axis.");
         logging.debug(this.count_of_points_y + " random points on y axis.");

@@ -3,36 +3,44 @@
 const SWITCH_LOGGING_LEVEL = "info";
 // const SWITCH_LOGGING_LEVEL = "debug";
 
-// Ukraine = "#0057b7"
-// Ukraine_ = "#ffd700"
-
 const CANVAS_WIDTH = 1080;
 const CANVAS_HEIGHT = CANVAS_WIDTH;
 
-let CAMERA_DEFAULT;
+// GRID
+const POINT_COUNT_MIN = 5
+const POINT_COUNT_MAX = 25
+const PAIRING_COUNT_MIN = 4;
+const PAIRING_COUNT_MAX = 10;
+const MAX_HEIGHT = 200;
+const MIN_HEIGHT = 40;
+const MINIMIMUM_DISTANCE = CANVAS_WIDTH / 20;
 
-let SCALING_FACTOR = 1;
-let rescaling_width;
-let rescaling_height;
+const COUNT_OF_POINTS_X = Math.floor(getRandomFromInterval(POINT_COUNT_MIN, POINT_COUNT_MAX));
+const COUNT_OF_POINTS_Y = Math.floor(getRandomFromInterval(POINT_COUNT_MIN, POINT_COUNT_MAX));
+const PAIRING_COUNT = Math.floor(getRandomFromInterval(PAIRING_COUNT_MIN, PAIRING_COUNT_MAX));
+const GRID = COUNT_OF_POINTS_X + "x" + COUNT_OF_POINTS_Y;
 
-let grid;
+// LINES
+const STROKE_SIZE_MIN = 0.1
+const STROKE_SIZE_MAX = 1
+const STROKE_SIZE = getRandomFromInterval(STROKE_SIZE_MIN, STROKE_SIZE_MAX);
+const STROKE_DISTORT = getRandomFromInterval(0, 0.2);
+const STROKE_NOISE = 5;
+let distanceBetweenLines;
 
-COUNT_OF_POINTS_X = Math.floor(getRandomFromInterval(5, 15));  // 1-5
-COUNT_OF_POINTS_Y = Math.floor(getRandomFromInterval(5, 15));  // 1-5
-GRID = COUNT_OF_POINTS_X + "x" + COUNT_OF_POINTS_Y;
-MAX_HEIGHT = 200;
-MIN_HEIGHT = 40;
-
-MINIMIMUM_DISTANCE = CANVAS_WIDTH / 20;
-STROKE_SIZE = 1;
-STROKE_DISTORT = getRandomFromInterval(0, 0.2);
-
-PREVIEW_CALLED = false;
-PAIRING_COUNT = Math.floor(getRandomFromInterval(4, 10));
-DISTANCE_BETWEEN_LINES = 30;
-
-logging.info("FXHASH: " + fxhash);
-logging.info("Grid: " + GRID);
+// PAINT
+const BORDER_FRAME_MIN = 5;
+const BORDER_FRAME_MAX = 35;
+BORDER_FRAME = getRandomFromInterval(BORDER_FRAME_MIN, BORDER_FRAME_MAX);
+const BRUSH_SIZE_MIN = 10;
+const BRUSH_SIZE_MAX = 30;
+const BRUSH_SIZE = getRandomFromInterval(BRUSH_SIZE_MIN, BRUSH_SIZE_MAX);
+const BRUSH_TIGHTNESS_MIN = 0;
+const BRUSH_TIGHTNESS_MAX = 5;
+const BRUSH_TIGHTNESS = getRandomFromInterval(BRUSH_TIGHTNESS_MIN, BRUSH_TIGHTNESS_MAX);
+const PRIMARY_STROKE_WEIGHT_MIN = 2;
+const PRIMARY_STROKE_WEIGHT_MAX = 4;
+const PRIMARY_STROKE_WEIGHT = getRandomFromInterval(PRIMARY_STROKE_WEIGHT_MIN, PRIMARY_STROKE_WEIGHT_MAX);
 
 let PALETTES = [
   {
@@ -115,11 +123,9 @@ let PALETTES = [
   },
 ]
 
-let CHOSEN_PALETTE = getRandomFromList(PALETTES);
-
-let CAMERA_FLIGHTS = [
+let cameraFlights = [
   {
-    name: "top/left -> center",
+    name: "Top/Left -> Center",
     camera_start_x: - CANVAS_WIDTH / 1.5,
     camera_start_y: - CANVAS_HEIGHT / 1.5,
 
@@ -127,7 +133,15 @@ let CAMERA_FLIGHTS = [
     camera_stop_y: 0,
   },
   {
-    name: "left -> width",
+    name: "Bottom/Right -> Center",
+    camera_start_x: CANVAS_WIDTH / 1.5,
+    camera_start_y: CANVAS_HEIGHT / 1.5,
+
+    camera_stop_x: 0,
+    camera_stop_y: 0,
+  },
+  {
+    name: "Left -> Right",
     camera_start_x: - CANVAS_WIDTH,
     camera_start_y: 0,
 
@@ -135,7 +149,7 @@ let CAMERA_FLIGHTS = [
     camera_stop_y: 0,
   },
   {
-    name: "right -> width",
+    name: "Right -> Left",
     camera_start_x: CANVAS_WIDTH,
     camera_start_y: 0,
 
@@ -144,41 +158,44 @@ let CAMERA_FLIGHTS = [
   },
 ]
 
-let CHOSEN_CAMERA_FLIGHT = getRandomFromList(CAMERA_FLIGHTS);
+// variable stuff
+let cameraDefault;
+let SCALING_FACTOR = 1;
+let rescaling_width;
+let rescaling_height;
+let preview_called = false;
+let grid;
+let chosenCameraFlight = getRandomFromList(cameraFlights);
+let chosenPalette = getRandomFromList(PALETTES);
+const TOP_COLOR = chosenPalette.top_color;
+const INSIDE_COLOR = chosenPalette.inside_color;
+const BACKGROUND_COLOR = chosenPalette.background_color;
 
-TOP_COLOR = CHOSEN_PALETTE.top_color;
-INSIDE_COLOR = CHOSEN_PALETTE.inside_color;
-BACKGROUND_COLOR = CHOSEN_PALETTE.background_color;  // "#f5f5f5";
+logging.info("FXHASH: " + fxhash);
+logging.info("Grid: " + GRID);
+logging.info("Palette: " + chosenPalette.name);
+logging.info("Pairing Count: " + PAIRING_COUNT);
+logging.info("Stroke size: " + Math.round((STROKE_SIZE + Number.EPSILON) * 100) / 100);
+logging.info("Camera flight: " + chosenCameraFlight.name);
+logging.info("Frame paint: " + Math.round(BORDER_FRAME));
+logging.info("Brush size: " + Math.round(BRUSH_SIZE));
 
-
-// STUPID
-STROKE_COLOR = "#273043" // "#5e5e5e"; 
-// STROKE_COLOR = "#ffffff";
-STROKE_NOISE = 1;
-STROKE_NOISE_2 = 3;
-STROKE_SIZE = 1;
-
-BACKGROUND_NOISE = getRandomFromInterval(5, 20);
-
-let dotty;
-
-let camera_start_x;
+logging.info("Primary stroke weight: " + Math.round(PRIMARY_STROKE_WEIGHT));
 
 function preload() {
-  font = loadFont('SourceSansPro-Regular.otf');
+  // font = loadFont('SourceSansPro-Regular.otf');
 }
 
 function setup() {
   logging.setLevel(SWITCH_LOGGING_LEVEL);
 
+  distanceBetweenLines = map(STROKE_SIZE, STROKE_SIZE_MIN, STROKE_SIZE_MAX, 20, 40);
+
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
   grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT, MIN_HEIGHT);
 
-  // backback = new Background(BACKGROUND_COLOR, BACKGROUND_NOISE);
-
-  // painty = new Paint(width, height, TOP_COLOR);
-
-  CAMERA_DEFAULT = [CHOSEN_CAMERA_FLIGHT.camera_start_x / SCALING_FACTOR, CHOSEN_CAMERA_FLIGHT.camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0];
+  cameraDefault = [chosenCameraFlight.camera_start_x / SCALING_FACTOR, chosenCameraFlight.camera_start_y / SCALING_FACTOR, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0];
+  cameraStepSize = CANVAS_WIDTH / 216;
 
   resize_canvas();
 }
@@ -186,66 +203,42 @@ function setup() {
 
 function draw() {
 
-  // camera(width / 2, height / 2, (height / 0.65) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
-  // camera(width * 2, height / 2, (height / 0.65) / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
+  cameraDefault = [chosenCameraFlight.camera_start_x / SCALING_FACTOR, chosenCameraFlight.camera_start_y / SCALING_FACTOR, height * 1.35 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0];
 
-  CAMERA_DEFAULT = [CHOSEN_CAMERA_FLIGHT.camera_start_x / SCALING_FACTOR, CHOSEN_CAMERA_FLIGHT.camera_start_y / SCALING_FACTOR, height * 1.35 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0];
-
-  if (CHOSEN_CAMERA_FLIGHT.camera_start_x != CHOSEN_CAMERA_FLIGHT.camera_stop_x | CHOSEN_CAMERA_FLIGHT.camera_start_y != CHOSEN_CAMERA_FLIGHT.camera_stop_y) {
-    if (CHOSEN_CAMERA_FLIGHT.camera_start_x <= CHOSEN_CAMERA_FLIGHT.camera_stop_x) {
-      CHOSEN_CAMERA_FLIGHT.camera_start_x += CANVAS_WIDTH / 216;
+  if (
+    chosenCameraFlight.camera_start_x != chosenCameraFlight.camera_stop_x |
+    chosenCameraFlight.camera_start_y != chosenCameraFlight.camera_stop_y
+  ) {
+    if (chosenCameraFlight.camera_start_x <= chosenCameraFlight.camera_stop_x) {
+      chosenCameraFlight.camera_start_x += cameraStepSize;
     } else {
-      CHOSEN_CAMERA_FLIGHT.camera_start_x -= CANVAS_WIDTH / 216;
+      chosenCameraFlight.camera_start_x -= cameraStepSize;
     }
-    if (CHOSEN_CAMERA_FLIGHT.camera_start_y <= CHOSEN_CAMERA_FLIGHT.camera_stop_y) {
-      CHOSEN_CAMERA_FLIGHT.camera_start_y += CANVAS_WIDTH / 216;
+    if (chosenCameraFlight.camera_start_y <= chosenCameraFlight.camera_stop_y) {
+      chosenCameraFlight.camera_start_y += cameraStepSize;
     } else {
-      CHOSEN_CAMERA_FLIGHT.camera_start_y -= CANVAS_WIDTH / 216;
+      chosenCameraFlight.camera_start_y -= cameraStepSize;
     }
-    camera(...CAMERA_DEFAULT);
+    camera(...cameraDefault);
   }
 
-
-  // camera(mouseX, mouseY, (height / 0.65), width / 2, height / 2, 0, 0, 1, 0);
   orbitControl(1, 1, 0.1);
 
   ambientLight(255, 255, 255);
-  // directionalLight(255, 255, 255, 0.25, 0.25, -1);
-  // directionalLight(255, 255, 255, 0, 0, -1);
-
-  // pointLight(255, 255, 255, width / 2, height / 2, 600);
-  // pointLight(255, 255, 255, width, height, 700);
-  // pointLight(255, 255, 255, 0, height, 700);
-  // pointLight(255, 255, 255, width / 4 * 3, height / 4 * 3, 600);
 
   ambientMaterial(255);
-  // specularMaterial(255);
 
   background(BACKGROUND_COLOR);
 
-  // // grid.show_grid_debug();
-
+  // grid.show_grid_debug();
   grid.show_boxes();
   grid.check_boxes_complete();
 
-  if (grid.boxes_completely_run == true && PREVIEW_CALLED == false) {
+  if (grid.boxes_completely_run == true && preview_called == false) {
     logging.debug("all work is done");
     fxpreview();
-    PREVIEW_CALLED = true;
+    preview_called = true;
   }
 
-
-  // image(backback.buffer, 0, 0, backback.buffer * SCALING_FACTOR, backback.buffer * SCALING_FACTOR);
-
-  // painty.show();
-
-  // image(painty.buffer, 0, 0)
-
-
-  // push();
-  // translate(width / 2, height / 2, 300);
-  // fill("red");
-  // sphere(40);
-  // pop();
 }
 

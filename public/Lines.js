@@ -8,15 +8,9 @@ class Line {
         this.limit_y = limit_y;
         this.history = [];
         this.line_color = distortColor(color(BACKGROUND_COLOR), STROKE_NOISE);
-        // this.line_color_second = color("black");
-        // this.line_color = distortColor(color(STROKE_COLOR), STROKE_NOISE);
-        // this.line_color_second = distortColor(color(STROKE_COLOR), STROKE_NOISE_2);
 
         this.run_complete = false;
         this.stroke_size_dynamic = STROKE_SIZE;
-        // this.stroke_size_dynamic = 1;
-        // this.stroke_speed = STROKE_SPEED
-        // this.stroke_speed = 1;
         this.stroke_speed = getRandomFromInterval(0.8, 1);
     }
 
@@ -28,9 +22,6 @@ class Line {
                 if (this.x <= this.limit_x) {
                     this.x += this.stroke_speed;
                     this.y = this.y + getRandomFromInterval(-1 * STROKE_DISTORT, STROKE_DISTORT);
-                    // if (frameCount % STROKE_RESOLUTION == 0) {
-                    //     this.history.push(createVector(this.x, this.y));
-                    // }
                 } else {
                     this.run_complete = true;
                 }
@@ -38,9 +29,6 @@ class Line {
                 if (this.y <= this.limit_y) {
                     this.y += this.stroke_speed;
                     this.x = this.x + getRandomFromInterval(-1 * STROKE_DISTORT, STROKE_DISTORT);
-                    // if (frameCount % STROKE_RESOLUTION == 0) {
-                    //     this.history.push(createVector(this.x, this.y));
-                    // }
                 } else {
                     this.run_complete = true;
                 }
@@ -50,9 +38,6 @@ class Line {
                     this.y += this.stroke_speed;
                     this.x = this.x + getRandomFromInterval(-1 * STROKE_DISTORT, STROKE_DISTORT);
                     this.y = this.y + getRandomFromInterval(-1 * STROKE_DISTORT, STROKE_DISTORT);
-                    // if (frameCount % STROKE_RESOLUTION == 0) {
-                    //     this.history.push(createVector(this.x, this.y));
-                    // }
                 } else {
                     this.run_complete = true;
                 }
@@ -62,29 +47,12 @@ class Line {
                     this.y -= this.stroke_speed;
                     this.x = this.x + getRandomFromInterval(-1 * STROKE_DISTORT, STROKE_DISTORT);
                     this.y = this.y + getRandomFromInterval(-1 * STROKE_DISTORT, STROKE_DISTORT);
-                    // if (frameCount % STROKE_RESOLUTION == 0) {
-                    //     this.history.push(createVector(this.x, this.y));
-                    // }
                 } else {
                     this.run_complete = true;
                 }
             }
 
-            // traces with history
-            // push();
-            // strokeWeight(STROKE_SIZE);
-            // stroke(this.line_color);
-            // noFill();
-            // beginShape();
-            // for (let i = 0; i < this.history.length; i++) {
-            //     vertex(this.history[i].x * SCALING_FACTOR, this.history[i].y * SCALING_FACTOR);
-            // }
-            // endShape();
-            // pop();
-
-            // NEW
             if (frameCount % 5 == 0) {
-                // STROKE_SIZE = getRandomFromInterval(1, 3);
                 this.stroke_size_dynamic += this.stroke_size_dynamic * getRandomFromInterval(-0.05, 0.05);
             }
 
@@ -92,10 +60,10 @@ class Line {
             this.canvas.push();
             this.canvas.noStroke();
             this.canvas.fill(this.line_color);
-            this.canvas.circle(this.x, this.y, this.stroke_size_dynamic);
-            // this.canvas.fill(0);
-            // this.canvas.fill(this.line_color_second);
-            // this.canvas.circle(this.x * SCALING_FACTOR, this.y * SCALING_FACTOR, 1);
+            if (frameCount % getRandomFromInterval(1, 2) == 0) {
+            } else {
+                this.canvas.circle(this.x, this.y, this.stroke_size_dynamic);
+            }
             this.canvas.pop()
         }
     }
@@ -112,13 +80,6 @@ class Lines {
 
         this.bodies = [];
         this.all_lines_complete = false;
-
-        // debug
-        // push()
-        // translate(this.x, this.y)
-        // noFill();
-        // this.canvas.rect(0, 0, this.canvas.width, this.canvas.height)
-        // pop()
 
         let chosen_axis = getRandomFromList(["x", "y", "xy", "yx", "blank"])
         logging.debug(chosen_axis + " axis randomly chosen.");
@@ -217,7 +178,6 @@ class Lines {
                     this.all_lines_complete = false;
                 }
             }
-            // console.log("finished");
         }
     }
 }

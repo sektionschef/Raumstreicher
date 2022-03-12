@@ -4,47 +4,35 @@ class Paint {
     constructor(width, height, color) {
         this.width = width;
         this.height = height;
-        this.border = 25;  // frame for the image
+        this.border = BORDER_FRAME;  // 25 frame for the image - 5-35
 
         this.area = this.width * this.height;
-
         this.buffer = createGraphics(this.width + 2 * this.border, this.height + 2 * this.border);
-
-        // this.strokeWeight = 2;
         this.color_master = color;
 
-        this.brush_size = 20
-
+        this.brush_size = BRUSH_SIZE;
         this.counter_max = 70;
+
         this.counter = 0;
 
         this.area_fully_painted = false;
 
-
         // create background
         // this.buffer.background(this.color_master);
-
-        // this.opacity = "BF";  // #24ccc9
-        // this.opacity = "ff";
-        // this.buffer.push();
-        // this.buffer.fill(this.color_master + this.opacity);
-        // this.buffer.noStroke();
-        // this.buffer.rect(this.border, this.border, width, height);
-        // this.buffer.pop();
 
         this.create_dotty();
     }
 
     create_dotty() {
         this.dotty = createGraphics(this.width, this.height);
-        let loop_count = constrain(this.area / 250, 50, 800)
+        let loop_count = constrain(this.area / 250, 50, 600)
         let size_point = 1;
 
         this.dotty.push();
         this.dotty.noStroke();
         this.dotty.strokeWeight(size_point);
         for (var i = 0; i < loop_count; i++) {
-            this.dotty.stroke(brightenColor(distortColor(color(this.color_master), 1), 50));
+            this.dotty.stroke(brightenColor(distortColor(color(this.color_master), 10), 70));
             this.dotty.point(getRandomFromInterval(0, this.dotty.width), getRandomFromInterval(0, this.dotty.height));
 
             this.dotty.stroke(brightenColor(color(INSIDE_COLOR), 20));
@@ -56,11 +44,12 @@ class Paint {
 
     show(on_top_layer) {
 
-        // for area of 20000 use first layer 20 loops and second one 80.
+        // relative to area, for area of 20000 use first layer 20 loops and second one 80.
         this.loop_1 = constrain(this.area / 1000, 100, 800)
         this.loop_2 = constrain(this.area / 250, 50, 400)
 
-        this.paint_layer(this.loop_1, 3, 5);  // 3, 5, 8
+
+        this.paint_layer(this.loop_1, PRIMARY_STROKE_WEIGHT, 5);
         this.paint_layer(this.loop_2, 1, 10);
 
         if (typeof (on_top_layer) != "undefined") {
@@ -89,7 +78,7 @@ class Paint {
             let begin_x = getRandomFromInterval(this.border, this.width + this.border)
             let begin_y = getRandomFromInterval(this.border, this.height + this.border)
 
-            // this.buffer.curveTightness(0);
+            this.buffer.curveTightness(BRUSH_TIGHTNESS);
             this.buffer.beginShape();
             this.buffer.curveVertex(begin_x, begin_y);
             this.buffer.curveVertex(begin_x, begin_y);

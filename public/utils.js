@@ -60,19 +60,12 @@ function resize_canvas() {
     // Override for full scale
     // SCALING_FACTOR = 1;
 
-    // particles_physical.kill_all();
-
-    // resize p5 object
-    // var line_canvas_resized = createGraphics(CANVAS_WIDTH * SCALING_FACTOR, CANVAS_HEIGHT * SCALING_FACTOR);
-    // line_canvas_resized.image(line_canvas, 0, 0, line_canvas_resized.width, line_canvas_resized.height);
-    // line_canvas = line_canvas_resized;
-
     resizeCanvas(CANVAS_WIDTH * SCALING_FACTOR, CANVAS_HEIGHT * SCALING_FACTOR);
     reset_camera();
 }
 
 function reset_camera() {
-    camera(...CAMERA_DEFAULT);
+    camera(...cameraDefault);
 }
 
 function keyTyped() {

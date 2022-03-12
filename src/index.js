@@ -15,7 +15,13 @@
 // [https://fxhash.xyz/articles/guide-mint-generative-token#features]
 //
 window.$fxhashFeatures = {
-    // "Palette": PALETTE_NAME,
+    "Palette": chosenPalette.name,
+    "Grid": GRID,
+    "Pairing Count": PAIRING_COUNT,
+    "Stroke size": Math.round(STROKE_SIZE),
+    "Camera flight": chosenCameraFlight.name,
+    "Frame paint": Math.round(BORDER_FRAME),
+    "Brush size": Math.round(BRUSH_SIZE), // small
 }
 
 
