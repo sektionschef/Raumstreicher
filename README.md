@@ -1,22 +1,8 @@
 # Raum
 
 * palettes - andere farben
-* number of paint loops
-* lines einfacher
-* structure backgrounds in funktionen
-* resize works
-* create features
-
-stop line draw?
-general clenanup?
-
-
-features:
-* palette
-* border size
-* perspective
-* stroke size of paint
-* curvetightness
+* resize works, shortcuts
+* feature names - plus runden
 
 
 # Raumstreicher
@@ -35,7 +21,7 @@ Space divided in boxes, randomly.
 * 'c' | center the artwork
 * 'r' | reset the perspective
 
-# 
+# Notes
 100% generative
 no pngs
 created with p5.js

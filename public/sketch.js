@@ -50,39 +50,39 @@ let PALETTES = [
     background_color: "#273043"
   },
   {
-    name: "Ukraine",
+    name: "Slawa Ukrajini",
     top_color: "#ffd700",
     inside_color: "#0057b7",
-    background_color: "#000000"
+    background_color: "#2e3033"
   },
   {
-    name: "bobbycorn",
+    name: "Bobbycorn",
     top_color: "#F5F5F5",
     inside_color: "#087E8B",
     background_color: "#3C3C3C"
   },
   {
-    name: "maypole",
+    name: "Maypole",
     top_color: "#EDF7F6",
     inside_color: "#F19953",
     background_color: "#2660A4"
   },
   {
-    name: "manfred bauer",
-    top_color: "#FFD899",
-    inside_color: "#20A39E",
+    name: "Manfred Bauer",
+    top_color: "#00d1c9",
+    inside_color: "#FFD899",
     background_color: "#EF5B5B"
   },
   {
-    name: "butterfred",
+    name: "Butterfred",
     top_color: "#B8F2E6",
-    inside_color: "#FAF3DD",
+    inside_color: "#fffefa",
     background_color: "#FFA69E"
   },
   {
-    name: "gianni",
-    top_color: "#EAF0CE",
-    inside_color: "#C0C5C1",
+    name: "Gianni",
+    top_color: "#fffade",
+    inside_color: "#39403b",
     background_color: "#7D8491"
   },
   {
@@ -94,8 +94,8 @@ let PALETTES = [
   {
     name: "Ginger",
     top_color: "#41EAD4",
-    inside_color: "#011627",
-    background_color: "#F71735",
+    inside_color: "#093961",
+    background_color: "#c46673",
   },
   {
     name: "Simone Minestrone",
@@ -105,21 +105,33 @@ let PALETTES = [
   },
   {
     name: "Hunger",
-    top_color: "#FF9FE5",
-    inside_color: "#2B50AA",
-    background_color: "#272727",
+    top_color: "#FF2626",
+    inside_color: "#000000",
+    background_color: "#FFE6E6",
   },
   {
     name: "Shakespeare",
-    top_color: "#A93F55",
-    inside_color: "#F2545B",
-    background_color: "#19323C",
+    top_color: "#398AB9",
+    inside_color: "#1C658C",
+    background_color: "#D8D2CB",
   },
   {
     name: "Ladies night",
-    top_color: "#0075F2",
+    top_color: "#3b96f7",
     inside_color: "#FF5C7A",
     background_color: "#D5CAC3",
+  },
+  {
+    name: "Stumpergasse",
+    top_color: "#FFD32D",
+    inside_color: "#302b2b",
+    background_color: "#ebebeb",
+  },
+  {
+    name: "Sneaker",
+    top_color: "#94B49F",
+    inside_color: "#B4CFB0",
+    background_color: "#E5E3C9",
   },
 ]
 
@@ -179,7 +191,7 @@ logging.info("Stroke size: " + Math.round((STROKE_SIZE + Number.EPSILON) * 100) 
 logging.info("Camera flight: " + chosenCameraFlight.name);
 logging.info("Frame paint: " + Math.round(BORDER_FRAME));
 logging.info("Brush size: " + Math.round(BRUSH_SIZE));
-
+logging.info("Brush tightness: " + Math.round(BRUSH_TIGHTNESS));
 logging.info("Primary stroke weight: " + Math.round(PRIMARY_STROKE_WEIGHT));
 
 function preload() {
