@@ -79,3 +79,18 @@ function keyTyped() {
         camera(0, 0, height * 1.5 / SCALING_FACTOR, 0, 0, 0, 0, 1, 0);
     }
 }
+
+
+function label_feature(value, min, max) {
+    let label;
+    let third = (max - min) / 3
+
+    if (value < (min + third)) {
+        label = "low"
+    } else if (value < min + third * 2) {
+        label = "medium"
+    } else {
+        label = "high"
+    }
+    return label
+}

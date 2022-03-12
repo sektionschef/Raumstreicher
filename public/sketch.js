@@ -81,9 +81,9 @@ let PALETTES = [
   },
   {
     name: "Gianni",
-    top_color: "#fffade",
-    inside_color: "#39403b",
-    background_color: "#7D8491"
+    top_color: "#fff4b5",
+    inside_color: "#d1d1d1",
+    background_color: "#39403b",
   },
   {
     name: "Ian",
@@ -183,16 +183,18 @@ const TOP_COLOR = chosenPalette.top_color;
 const INSIDE_COLOR = chosenPalette.inside_color;
 const BACKGROUND_COLOR = chosenPalette.background_color;
 
+
+
 logging.info("FXHASH: " + fxhash);
 logging.info("Grid: " + GRID);
+logging.info("Paired boxes: " + PAIRING_COUNT);
 logging.info("Palette: " + chosenPalette.name);
-logging.info("Pairing Count: " + PAIRING_COUNT);
-logging.info("Stroke size: " + Math.round((STROKE_SIZE + Number.EPSILON) * 100) / 100);
 logging.info("Camera flight: " + chosenCameraFlight.name);
-logging.info("Frame paint: " + Math.round(BORDER_FRAME));
-logging.info("Brush size: " + Math.round(BRUSH_SIZE));
-logging.info("Brush tightness: " + Math.round(BRUSH_TIGHTNESS));
-logging.info("Primary stroke weight: " + Math.round(PRIMARY_STROKE_WEIGHT));
+logging.info("Paint frame: " + label_feature(BORDER_FRAME, BORDER_FRAME_MIN, BORDER_FRAME_MAX)); //+ Math.round(BORDER_FRAME));
+logging.info("Brush region: " + label_feature(BRUSH_SIZE, BRUSH_SIZE_MIN, BRUSH_SIZE_MAX)); //+ Math.round(BRUSH_SIZE));
+logging.info("Brush size: " + label_feature(PRIMARY_STROKE_WEIGHT, PRIMARY_STROKE_WEIGHT_MIN, PRIMARY_STROKE_WEIGHT_MAX)); //+ Math.round(PRIMARY_STROKE_WEIGHT));
+logging.info("Brush tightness: " + label_feature(BRUSH_TIGHTNESS, BRUSH_TIGHTNESS_MIN, BRUSH_TIGHTNESS_MAX));// + Math.round(BRUSH_TIGHTNESS));
+logging.info("Line Stroke weight: " + label_feature(STROKE_SIZE, STROKE_SIZE_MIN, STROKE_SIZE_MAX));// + Math.round((STROKE_SIZE + Number.EPSILON) * 100) / 100);
 
 function preload() {
   // font = loadFont('SourceSansPro-Regular.otf');
@@ -201,7 +203,7 @@ function preload() {
 function setup() {
   logging.setLevel(SWITCH_LOGGING_LEVEL);
 
-  distanceBetweenLines = map(STROKE_SIZE, STROKE_SIZE_MIN, STROKE_SIZE_MAX, 20, 40);
+  distanceBetweenLines = map(STROKE_SIZE, STROKE_SIZE_MIN, STROKE_SIZE_MAX, 10, 40);  // 20 - 40
 
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL).parent('canvasHolder');
   grid = new Grid(COUNT_OF_POINTS_X, COUNT_OF_POINTS_Y, MINIMIMUM_DISTANCE, PAIRING_COUNT, MAX_HEIGHT, MIN_HEIGHT);
