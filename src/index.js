@@ -23,7 +23,7 @@ window.$fxhashFeatures = {
     "Brush region": label_feature(BRUSH_SIZE, BRUSH_SIZE_MIN, BRUSH_SIZE_MAX),
     "Brush size": label_feature(PRIMARY_STROKE_WEIGHT, PRIMARY_STROKE_WEIGHT_MIN, PRIMARY_STROKE_WEIGHT_MAX),
     "Brush tightness": label_feature(BRUSH_TIGHTNESS, BRUSH_TIGHTNESS_MIN, BRUSH_TIGHTNESS_MAX),
-    "Line Stroke weight": label_feature(STROKE_SIZE, STROKE_SIZE_MIN, STROKE_SIZE_MAX),
+    "Line stroke weight": label_feature(STROKE_SIZE, STROKE_SIZE_MIN, STROKE_SIZE_MAX),
 }
 
 
